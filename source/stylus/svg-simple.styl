@@ -1,0 +1,209 @@
+@import 'nib'
+@import 'common/reset'
+$coke-color = #FF3333
+
+
+body, html
+  height 100%
+  width 100%
+
+rect#bg
+  fill transparent
+  width 100%
+  height 100%
+
+#coke_bottle
+  width 100%
+  height 100%
+  background-color $coke-color
+
+#coke-fill
+  fill red 
+
+#circle_1,
+#circle_2,
+#circle_3,
+#circle_4,
+#circle_5,
+#circle_6,
+#circle_7,
+#circle_8,
+#circle_9,
+#circle_10,
+#circle_11,
+#circle_12,
+#circle_13,
+#circle_14,
+#circle_15,
+#circle_16,
+#circle_17,
+#circle_18,
+#circle_19,
+#circle_20,
+#circle_21,
+#circle_22,
+#circle_23,
+#circle_24,
+#circle_25,
+#circle_26,
+#circle_27,
+#circle_28,
+#circle_29,
+#circle_30,
+#circle_31,
+#circle_32,
+#circle_33,
+#circle_34,
+#circle_35,
+#circle_36,
+#circle_37
+  opacity 0
+  transform-origin 50% 50%
+  transition all .2s ease-in-out
+  animation flyup 5s infinite
+  animation-timing-function linear
+
+$step-0 = .2s
+$step-1 = .4s
+$step-2 = .6s
+$step-3 = .8s
+$step-4 = 1s
+$step-5 = 1.2s
+$step-7 = 1.4s
+$step-8 = 1.6s
+$step-9 = 1.8s
+$step-10 = 2s
+$step-11 = 2.2s
+$step-12 = 2.4s
+$step-13 = 2.6s
+$step-14 = 2.8s
+$step-15 = 3s
+$step-16 = 3.2s
+$step-17 = 3.4s
+$step-18 = 3.6s
+$step-19 = 3.8s
+$step-20 = 4.8s
+$step-21 = 5s
+$step-22 = 5.2s
+$step-23 = 5.4s
+$step-24 = 5.6s
+$step-25 = 5.8s
+$step-26 = 6s
+$step-27 = 6.2s
+$step-28 = 6.4s
+$step-29 = 6.6s
+$step-30 = 6.8s
+$step-31 = 7s
+$step-32 = 7.2s
+$step-33 = 7.4s
+$step-34 = 7.6s
+$step-35 = 7.8s
+$step-36 = 8s
+$step-37 = 8.2s
+#b_fill, #bottle
+  animation-delay $step-0
+  animation bottlein $step-2
+  transform-origin 50% 50%
+
+#b_logo
+  animation-delay $step-1
+  animation bottlelogoin $step-0
+#circle_1
+  animation-delay $step-2
+#circle_2
+  animation-delay $step-3
+#circle_3
+  animation-delay $step-4
+#circle_4
+  animation-delay $step-5
+#circle_5
+  animation-delay $step-7
+#circle_6
+  animation-delay $step-8
+#circle_7
+  animation-delay $step-9
+#circle_8
+  animation-delay $step-10
+#circle_9
+  animation-delay $step-11
+#circle_10
+  animation-delay $step-12
+#circle_11
+  animation-delay $step-13
+
+#circle_12
+	animation-delay $step-12
+#circle_13
+	animation-delay $step-13
+#circle_14
+	animation-delay $step-14
+#circle_15
+	animation-delay $step-15
+#circle_16
+	animation-delay $step-16
+#circle_17
+	animation-delay $step-17
+#circle_18
+	animation-delay $step-18
+#circle_19
+	animation-delay $step-19
+#circle_20
+	animation-delay $step-20
+#circle_21
+	animation-delay $step-21
+#circle_22
+	animation-delay $step-22
+#circle_23
+	animation-delay $step-23
+#circle_24
+	animation-delay $step-24
+#circle_25
+	animation-delay $step-25
+#circle_26
+	animation-delay $step-26
+#circle_27
+	animation-delay $step-27
+#circle_28
+	animation-delay $step-28
+#circle_29
+	animation-delay $step-29
+#circle_30
+	animation-delay $step-30
+#circle_31
+	animation-delay $step-31
+#circle_32
+	animation-delay $step-32
+#circle_33
+	animation-delay $step-33
+#circle_34
+	animation-delay $step-34
+#circle_35
+	animation-delay $step-35
+#circle_36
+	animation-delay $step-36
+#circle_37
+	animation-delay $step-37
+
+@keyframes flyup
+  0%
+    opacity 1
+    transform translateY(5em) scale(.5)
+  100%
+    opacity 0
+    transform translateY(-2em) scale(1)
+  
+@keyframes bottlelogoin
+  0%
+    opacity 0
+    transform scale(.3)
+  100%
+    opacity 0
+    transform scale(1)
+
+@keyframes bottlein
+  0%
+    transform translateY(10%) scale(0.75)
+  50%
+    transform translateY(5%) scale(1.25)
+  100%
+    transform translateY(0) scale(1)

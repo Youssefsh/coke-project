@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html dir="ltr" lang="en-US"class="browser-ie"> <![endif]-->
+<!--[if lt IE 7 ]> <html dir="ltr" lang="en-US" class="browser-ie"> <![endif]-->
+<!--[if IE 7 ]>    <html dir="ltr" lang="en-US" class="browser-ie"> <![endif]-->
+<!--[if IE 8 ]>    <html dir="ltr" lang="en-US" class="browser-ie"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coke SVG Tutorial - Beginner</title>
+  <link rel="stylesheet" href="../common/styles/highlight/androidstudio.css">
+  <!-- <link rel="stylesheet" href="../common/styles//bootstrap/bootstrap.css"> -->
+  <!-- <link rel="stylesheet" href="../common/styles//bootstrap/bootstrap-theme.css"> -->
+  <link rel="stylesheet" href="../common/styles/tutorial.css">
+
+	<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+	
+</head>
+<body>
+	
+	<div class="container">
+		<h1>SVG Beginner</h1>
+
+        <hr>
+		
+        <p>SVG is short for Scalable Vector Graphics. It is a graphic format in which shapes are specified in XML and rendered by an SVG viewer. Today, most web browsers can display SVG just like they can display PNG, GIF, and JPG. You can use SVG on the web pretty easily, but there is plenty you should know.</p>
+        
+        <p>In this tutorial, you'll get an understanding of why SVG is useful, what browsers are compatibile with it, how to use it on your website, how to create SVG, and how to export it from Adobe Illustrator. Anything graphic made with vector based tools like Adobe Illustrator, Sketch, and Inkscape can be easily be converted to SVG. Once you have a grasp of how SVG works generally, we'll move on to <a href="/svg/svg-intermediate.html">SVG Intermediate</a> where we'll focus on animating SVG with CSS3, Javascript, and SMIL. Once you feel ready, we'll progress to the <a href="/svg/svg-final.html">SVG Final Project</a> where you'll learn how to create a <a href="/svg/">Coke contour bottle loader</a>!</p>
+        
+        <p>But let's not get ahead of ourselves. First we must understand what SVG is and why it's useful. Let's get started!</p>
+        
+            
+               <strong>Table of Contents:</strong>
+                <ul>
+                    <li><a href="#why">Why SVG?</a></li>
+                    <li><a href="#browser">Browser compatibility</a></li>
+                    <li><a href="#creating">Creating SVG</a></li>
+                    <li><a href="#basicshapes">Basic Shapes</a></li>
+                    <li><a href="#embedding">Embedding SVG</a></li>
+                    <li><a href="#tutorial">Mini Tutorial</a></li>
+                </ul>
+                
+                <hr>
+
+	 
+        <h2><a href="#why" id="why" class="main-anchor">Why SVG?:</a></h2>
+        <p>In the early days of the web (mid 90's), it was clear that the vector format would be useful for the web. Several large companies like Adobe, IBM, Netscape, Microsoft, HP, and others published competing specifications for how web vector graphics should work. In 1998, the W3C examined all the submissions and developed SVG WG, thus establishing a universal standard. SVG became increasingly popular and when Adobe's Flash was denounced by Apple in 2008, SVG began its rapid rise in popularity. With the increase in variety of screen sizes and resolutions, SVG's adaptability and built-in browser support cemented its position as the gold standard in web vector graphics.</p>
+        
+       	<div class="notes-container">
+			<p><span class="link-snippet">Link:</span> <a href="http://www.w3.org/Graphics/SVG/WG/wiki/Secret_Origin_of_SVG" target="_blank">The Secret History of SVG</a>.</p>
+		</div> 
+        
+		<p>But why is SVG so good? What makes it useful?</p>
+		
+        <ul>
+            <li><strong>Editable</strong>: Each and every element and attribute in SVG's can be edited and animated by means of your favorite editor.</li>
+            <li><strong>Scalable</strong>: SVG's can be zoomed, enlarged or scaled down without limit whereby the quality will always remain (with the exception of extremely small).</li>
+			<li><strong>Retina</strong>: Big or small, with SVG you will never see pixels. This makes SVG perfect for retina screens.</li>
+            <li><strong>Loading time</strong>: When SVG's aren’t too complex the file size will be relatively small and easy to compress.</li>
+            <li><strong>SEO</strong>: Search engines index and cache SVG files . Therefore search engines can be used to search for SVG files.</li>
+            <li><strong>Perfect display</strong>: You can make SVG's interactive and make use of filters, gradients and other formats to ensure the image is always properly displayed.</li>
+            <li><strong>Fallback</strong>: When SVG's aren’t supported by a browser or other device, there are various ways to create a fallback.</li>
+            <li><strong>Recommended by the W3C</strong>: The W3C recommends the use of SVG and SVG easily integrate with other W3C standards like DOM and XLS.</li>
+		</ul>
+	
+        
+        <hr>
+
+	 
+        <h2><a href="#browser" id="browser" class="main-anchor">Browser Compatability:</a></h2>
+        <p>All modern browsers support the use of SVG's. Only the older Internet Explorer versions (IE8 or lower) and the older Android (2.3 and lower) do not support SVG. However, some technologies closely associated with SVG are not as widely supported. SMIL Animation, is not supported on any IE old or new. Use resources like caniuse.com to determine whether your code is cross-browser compatible.</p>
+        
+        <div class="notes-container">
+		<p><span class="link-snippet">Link:</span> <a href="http://caniuse.com/#feat=svg" target="_blank">caniuse.com</a>.</p>
+		</div>
+		
+        <p>If you'd like to use SVG, but also need to support these browsers that don't support using SVG in this way, you have some options. You can use a tools like <a href="http://modernizr.com/">Modernizr</a> and <a href="http://benhowdle.im/svgeezy/">SVGeezy</a> to swap out the <span class="code-snippet">src</span> of an image or use David Bushell's simple Javascript alternative.</p>   
+        
+        
+        <div class="notes-container">
+		<p><span class="link-snippet">Link:</span> <a href="http://dbushell.com/2013/02/04/a-primer-to-front-end-svg-hacking/" target="_blank">David Bushell's JS</a>.</p>
+		</div>
+        
+        
+        <hr>
+
+	 
+        <h2><a href="#creating" id="creating" class="main-anchor">Creating SVG:</a></h2>
+        <p>There are 2 different ways to create SVG, either by understanding and writing down each stroke, line, path and their vector points directly into HTML, or exporting them from vector programs that support exporting to SVG.</p>
+        
+        <p>SVG's sometimes look very complicated and editing SVG's is a task that is preferably avoided. Luckily enough some developers have developed tools and applications which have totally removed manual SVG editing. Find below the most commonly used applications and tools to create and edit SVG files. Take into account though some of the applications and tools might create an extra output (for example meta-data) during SVG creation or editing. This output needs to be removed to keep the SVG as small and as fast as possible.</p>
+        
+        <ul>
+			<li>Adobe Illustrator</li>
+			<li>Inkscape</li>
+			<li>Sketch</li>
+            <li>RaphaelJS</li>
+            <li>Iconizr</li>
+            <li>D3.js</li>
+		</ul>
+        
+       <hr>
+
+	         <h2><a href="#basicshapes" id="basicshapes" class="main-anchor">Basic Shapes in SVG:</a></h2>
+        <p>To get an idea of how SVG works, let's create some basic shapes using HTML and SVG coordinates. This process is tedious compared to simply exporting from Illustrator but demonstrates how SVG works on a fundamental level.</p>
+        
+		<h5>We'll cover the following shapes:</h5>
+
+		<ol>
+			<li>Rectangle <span class="code-snippet">&#60;rect&#62;</span></li>
+			<li>Circle <span class="code-snippet">&#60;circle&#62;</span></li>
+			<li>Ellipse <span class="code-snippet">&#60;ellipse&#62;</span></li>
+			<li>Line <span class="code-snippet">&#60;line&#62;</span></li>
+			<li>Polygon <span class="code-snippet">&#60;polygon&#62;</span></li>
+			<li>Polyline <span class="code-snippet">&#60;polyline&#62;</span></li>
+			<li>Path <span class="code-snippet">&#60;path&#62;</span></li>
+		</ol>
+        
+        <br>
+
+		<h4>1. Rectangle <span class="code-snippet">&#60;rect&#62;</span>:</h4>
+
+		<p>The <span class="code-snippet">&#60;rect&#62;</span> element is used to create rectangles and different variations of the rectangle.</p>
+
+		<h6>Example:</h6>
+		<p data-height="154" data-theme-id="0" data-slug-hash="doMbzx" data-default-tab="result" data-user="Youssefsh" class='codepen'>See the Pen <a href='http://codepen.io/Youssefsh/pen/doMbzx/'>doMbzx</a> by Youssef (<a href='http://codepen.io/Youssefsh'>@Youssefsh</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+
+
+		<hr>
+
+		<h4>2. Circle <span class="code-snippet">&#60;circle&#62;</span>:</h4>
+
+		<p>The <span class="code-snippet">&#60;circle&#62;</span> element is used to create SVG circles.</p>
+		
+		<h6>Example:</h6>
+		<p data-height="268" data-theme-id="0" data-slug-hash="NqNKaj" data-default-tab="result" data-user="Youssefsh" class='codepen'>See the Pen <a href='http://codepen.io/Youssefsh/pen/NqNKaj/'>NqNKaj</a> by Youssef (<a href='http://codepen.io/Youssefsh'>@Youssefsh</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+		
+		<hr>
+
+		<h4>3. Ellipse <span class="code-snippet">&#60;ellipse&#62;</span>:</h4>
+
+		<p>The <span class="code-snippet">&#60;ellipse&#62;</span> element is used to create SVG ellipses.</p>
+		
+		<h6>Example:</h6>
+		<p data-height="347" data-theme-id="0" data-slug-hash="qdZWVG" data-default-tab="result" data-user="Youssefsh" class='codepen'>See the Pen <a href='http://codepen.io/Youssefsh/pen/qdZWVG/'>qdZWVG</a> by Youssef (<a href='http://codepen.io/Youssefsh'>@Youssefsh</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+		
+		<hr>
+
+		<h4>4. Line <span class="code-snippet">&#60;line&#62;</span>:</h4>
+
+		<p>The <span class="code-snippet">&#60;line&#62;</span> element is used to create SVG lines.</p>
+
+		<h6>Example:</h6>
+		<p data-height="268" data-theme-id="0" data-slug-hash="BNKBrW" data-default-tab="result" data-user="Youssefsh" class='codepen'>See the Pen <a href='http://codepen.io/Youssefsh/pen/BNKBrW/'>BNKBrW</a> by Youssef (<a href='http://codepen.io/Youssefsh'>@Youssefsh</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+		
+		<hr>
+
+		<h4>5. Polygon <span class="code-snippet">&#60;polygon&#62;</span>:</h4>
+
+		<p>The <span class="code-snippet">&#60;polygon&#62;</span> element is used to create SVG polygons using the points attribute.</p>
+		
+		<h6>Example:</h6>
+		<p data-height="268" data-theme-id="0" data-slug-hash="gprYzw" data-default-tab="result" data-user="Youssefsh" class='codepen'>See the Pen <a href='http://codepen.io/Youssefsh/pen/gprYzw/'>gprYzw</a> by Youssef (<a href='http://codepen.io/Youssefsh'>@Youssefsh</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+
+
+		<hr>
+
+		
+		<h4>6. Polyline <span class="code-snippet">&#60;polyline&#62;</span>:</h4>
+		
+		<p>The <span class="code-snippet">&#60;polyline&#62;</span> element is used to create any SVG shape that consists of straight lines.</p>
+		
+		<h6>Example:</h6>
+		<p data-height="268" data-theme-id="0" data-slug-hash="RPabBa" data-default-tab="result" data-user="Youssefsh" class='codepen'>See the Pen <a href='http://codepen.io/Youssefsh/pen/RPabBa/'>RPabBa</a> by Youssef (<a href='http://codepen.io/Youssefsh'>@Youssefsh</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+
+		<hr>
+
+		<h4>7. Path <span class="code-snippet">&#60;path&#62;</span>:</h4>
+		
+		<p>The <span class="code-snippet">&#60;path&#62;</span> element is used to define SVG paths and you can create any shape with it.</p>
+
+		<h6>Reference Link: <a href="http://www.w3schools.com/svg/svg_path.asp" target="_blank">SVG Path Details.</a></h6>
+		
+		<hr>
+
+        <h2><a href="#embedding" id="embedding" class="main-anchor">Embedding SVG:</a></h2>
+        <p>SVG's are ideal when a website is filled with images, background-images, logos, icons, patterns and basic shapes. SVG's are the perfect replacement for currently used jpg, png or gif images. When you are planning to use SVG files on your website, you should always question whether SVG file editing afterwards will still be required (with CSS or JavaScript) or if you would just want the SVG files to be displayed on your website without future editing requirements.</p>
+
+		<p>Embedding SVG is a simple process, these are three widely used methods to view SVG on a browser.</p>
+
+		<ul>
+			<li>Inline SVG, by copying SVG code and pasting it directly into an HTML document.</li>
+			<li>Linking it in an <div class="code-snippet">img</div> tag.</li>
+			<li>Applying it through CSS <div class="code-snippet">background</div> property.</li>
+		</ul>
+
+		<hr>
+
+        <h2><a href="#tutorial" id="tutorial" class="main-anchor">Mini Tutorial:</a></h2>
+        <p>Now that you've seen why SVG is useful and how it works fundamentally, it's time to learn how to export SVG. The easiest way to use SVG is by creating a graphic in a vector program like Illustrator and exporting the SVG for use on the web.</p>
+        
+		<h4>Exporting from AI to SVG:</h4>
+
+		<ol>
+			<li>1. Create your graphic. ( Screenshot - 1 )</li>
+			<li>2. Save as SVG. ( Screenshot - 2 & 3 ).</li>
+			<li>3. Export like screenshot, or with customized options if necessary. ( Screenshot - 4 ).</li>
+		</ol>
+
+		<p>1. Creating our graphic is simple. Open Adobe Illustrator, create your shapes, or grab some vector graphics online as long as it's free to use.</p>
+		
+		<p>We will be using the Coke logo for this example.</p>
+		
+		<h6>Figure 1: Creating our graphic:</h6>
+		<img src="assets/graphics/aitosvg/1.png" width="400px" alt="">
+		
+		<hr>
+		<p>2. Saving as SVG:</p>
+
+		<p>After we create our graphics we need to follow the steps in the below screenshots to export our graphic as SVG.</p>
+		
+		
+		<div class="grid-container">
+			<div class="grid-50">
+				<h6>Figure 2: Saving as an extenstion:</h6>
+				<img src="assets/graphics/aitosvg/2.png" width="350px" alt=""> 
+			</div>
+			<div class="grid-50">
+				<h6>Figure 3: Saving as SVG:</h6>
+				<img src="assets/graphics/aitosvg/3.png" width="300px" alt="">
+			</div>
+		</div>
+
+		<hr>
+
+		<p>3. Exporting as SVG:</p>
+
+		
+
+		<div class="grid-container">
+			<div class="grid-50">
+				<h6>Figure 4: Exporting as SVG:</h6>
+				<img src="assets/graphics/aitosvg/4.png" width="420px" alt="">
+			</div>
+			<div class="grid-50">
+				<h6>Conclusion:</h6>
+                <p>From here, it's simple to embed the SVG into your HTML page. However, vector programs like Adobe Illustrator are known to add some extra bloat code in the exported SVG code. Use tools like <a href="https://github.com/RazrFalcon/SVGCleaner">SVGCleaner</a> to clean and optimize your SVG. It's important to eliminate unnecessary data, attributes, and elements. Images cleaned by SVG Cleaner are typically 40-60 percent smaller than the original ones. </p>
+			</div>
+		</div>
+<hr>
+	</div>
+	
+	<br><br><br>
+
+
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/highlight.pack.js"></script>
+	<script src="js/tutorial.js"></script>
+
+</body>
+</html>

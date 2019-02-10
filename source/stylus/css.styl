@@ -1,0 +1,699 @@
+
+/* Importing Files/Plugins :-
+----------------------------- */
+
+@import 'nib'
+@import 'common/reset'
+
+/* Connecting Fonts      :-
+--------------------------- */
+
+@font-face 
+	font-family 'Gotham'
+	src: url('../../../common/fonts/Gotham-Book_gdi.eot')
+	src: url('../../../common/fonts/Gotham-Book_gdi.eot?#iefix') format('embedded-opentype'),
+		 url('../../../common/fonts/Gotham-Book_gdi.woff') format('woff'),
+		 url('../../../common/fonts/Gotham-Book_gdi.ttf') format('truetype'),
+		 url('../../../common/fonts/Gotham-Book_gdi.svg#Gotham-Book') format('svg')
+	font-weight 325
+	font-style normal
+	font-stretch normal
+
+/* Variables             :-
+--------------------------- */
+$main-font = 'Gotham', Arial, sans-serif
+$machine-width = 550px
+$machine-height = 750px
+$machine-glassview-height = 120px
+$machine-spacer = 1em
+$bottle-width = 1.65em
+
+body
+	font-family $main-font
+
+/* Colors       :-
+--------------------------- */
+
+// General Colors
+$machine-mc = #F80506
+$machine-tc = #666666
+$machine-ic = #444444
+$machine-lc = #EEEEEE
+$machine-llc = #FFFFFF
+
+// Bottle Colors
+$coke-color = $machine-mc
+$sprite-color = #00B945
+$diet-color = #BCBDC0
+$dasani-color = #5E7ECA
+
+// Glass Colors
+$glass-cc = #BFFFFF
+$glass-bg = #AFAFAF
+$glass-bc = darken($glass-bg, 30%)
+
+
+/* Zindex Levels         :-
+--------------------------- */
+
+// z-index levels from lower values to higher values
+// 1 is 4 and 4 is 10, so in this case $index-4 is the highest layer of z-index we have.
+// And this will be used to control our viewport on the glass container.
+$index-1 = 4
+$index-2 = 6
+$index-3 = 8
+$index-4 = 10
+$index-5 = 12
+$index-10 = 24
+
+/* Mixins & Functions    :-
+--------------------------- */
+
+// Mixin for cleaner and reusable code.
+// For coloring the buttons and their shadows and hover states.
+$button-mixin(n)
+	background-color n
+	border-bottom-color darken(n, 10%)
+
+/* Machine Layout        :-
+--------------------------- */
+
+// Machine Container
+.machine-container
+	position relative
+	margin ($machine-spacer * 6) auto
+	margin-bottom 0
+	background-color $machine-ic
+	width $machine-width
+	height $machine-height
+	
+	@media (max-height: 800px)
+		transform scale(.85) translateY(-12%)
+	@media (max-height: 660px)
+		transform scale(.65) translateY(-35%)
+	@media (max-width: 600px)
+		transform scale(.6) translateY(-35%)
+	@media (max-width: 500px)
+		transform scale(.55) translateY(-45%) translateX(-30%)
+		
+
+// Machine Top perspective
+// This part of the code is a perspective hack and the perspective here applies to it's child elements.
+// We are also using this as a positioning container so we don't set things wildly on the .machine-top that has the perspective applied to.
+.machine-top-perspective
+	perspective 600px
+	position absolute
+	width 100%
+	top -86px
+	left 0
+
+// Machine Top that inherits the perspective from the previous container.
+.machine-top
+	background-color $machine-tc
+	width 90.3%
+	// To center it in the middle
+	margin 0 auto
+	height ($machine-height / 6)
+	transform rotateX(70deg)
+
+/* Machine View          :-
+--------------------------- */
+.machine-frame-container
+	padding-right 19%
+	height 100%
+	
+.machine-frame
+	width 100%
+	height 100%
+	padding $machine-spacer
+
+.machine-view
+	background-color $machine-lc
+	height 100%
+	width 100%
+	position relative
+	padding $machine-spacer
+
+
+// Machine Window
+.machine-window-container
+	height 70%
+	width 100%
+	max-width 100%
+	min-width 100%
+	overflow hidden
+	border-radius ($machine-spacer * .5)
+	position relative
+	// Hack fix
+	opacity .99
+	
+	
+.machine-window
+	background-color white
+	position relative
+	border-radius ($machine-spacer * .5)
+	width 100%
+	height 100%
+	overflow hidden
+
+
+// Shelfs Styles
+.machine-shelf-container
+	height 100%
+	position relative
+	
+.machine-shelf
+	width 100%
+	height 70%
+	position absolute
+	bottom 9px
+	
+	&:after
+		content ''
+		display block
+		height 30px
+		width 100%
+		background-color $machine-lc
+		position absolute
+		bottom -9px
+
+	.shelf-block
+		&:first-child
+			// Gives the illusion of the shelf sides
+			// In relaity this is just a CSS triangler that has teh same color as the mother background.
+			.shelf-hack
+				left 0
+				border-width 70px 55px 0 0
+				border-color white transparent transparent transparent
+			&:after
+				border-radius 0 0 1.45em 0
+				left 0
+				width 94%
+				
+		&:last-child
+			&:after
+				border-radius 0 0 0 1.45em 
+				left auto
+				right -1px
+				width 94.5%
+			.shelf-hack
+				right -1px
+				border-width  0 55px 70px 0 
+				border-color transparent white transparent transparent
+
+.shelf-hack
+	display inline-block
+	height 100%
+	border-radius 0
+	position absolute
+	width 0
+	bottom 0
+	height 0
+	border-style solid
+	background-color transparent
+	margin-left 0
+	z-index $index-2
+
+.shelf-block
+	height 100%
+	width 16.6666666%
+	display inline-block
+	float left
+	position relative
+	
+	&:after
+		content ''
+		width 87.5%
+		height 65%
+		background-color #B7B7B7
+		display inline-block
+		position absolute
+		bottom -2px
+		left 4px
+		z-index $index-1
+		border-radius 0 0 1.45em 1.45em
+		
+	&:before
+		content ''
+		border-radius 1em
+		height 80%
+		width 8px
+		position absolute
+		left 0
+		bottom 0
+		margin-left -4px
+		display inline-block
+		background-color $machine-lc
+
+// Machine Window Row
+.machine-window-row
+	height 24%
+	margin-bottom 1.5%
+	
+.machine-bottom
+	position absolute
+	bottom 0
+	left 0
+	width 100%
+	max-width 100%
+	height 25%
+	overflow hidden
+	img
+		position absolute
+		left -18%
+		bottom -5%
+		display inline-block
+		width 135%
+	
+/* Machine Side          :-
+--------------------------- */
+
+// Machine Side
+.machine-side
+	background linear-gradient(right, $machine-mc, darken($machine-mc, 25%))
+	position absolute
+	top 0
+	right 0
+	width 19%
+	height 100%
+	padding ($machine-spacer * .75)
+	text-align center
+
+// Machine Top Container	
+.machine-side-top
+	width 100%
+	padding-top ($machine-spacer * 1.5)
+	padding-bottom ($machine-spacer * 1.5)
+	img
+		width 35px
+		height auto
+		display inline-block
+
+// Machine Bottom Container
+.machine-side-bottom
+	position absolute
+	bottom 0
+	width 100%
+	left 0
+	padding-top ($machine-spacer * 1.5)
+	padding-bottom ($machine-spacer * 2.5)
+	img
+		display inline-block
+		width 35px
+		height auto
+
+// Machine Bottom Text - Change is good..
+.machine-bottom-text
+	margin-top .5em
+	color white
+	font-size 13px
+	width 100%
+	display inline-block
+
+// Machine Controls
+.machine-controls
+	width 100%
+	max-width 100%
+	padding ($machine-spacer * 2.25) ($machine-spacer / 2)
+	border-radius 5em
+	display inline-block
+	background-color $machine-lc
+
+
+/* Bottle Buttons        :-
+--------------------------- */
+
+// General Button Rules
+[class^="activator-"], [class*=" activator-"]
+	display inline-block
+	width 100%
+	border-radius ($machine-spacer * .3)
+	padding ($machine-spacer * .25)
+	margin-bottom .35em
+	border-bottom .2em solid transparent
+	img
+		vertical-align top
+		display inline-block
+		width 70%
+
+.activator-coke
+	$button-mixin($coke-color)
+.activator-sprite
+	$button-mixin($sprite-color)
+.activator-diet
+	$button-mixin($diet-color)
+.activator-dasani
+	$button-mixin($dasani-color)
+
+
+/* Glass View            :-
+--------------------------- */
+.machine-glassview
+	margin-top $machine-spacer * .5
+	height $machine-glassview-height
+	width 100%
+	overflow hidden
+	position relative
+	
+.glass-container-holder
+	height 100%
+	position absolute
+	width 100%
+	top 0
+	left 0
+
+// Depth Container
+.depth-container
+	background-color $glass-bg
+	width 100%
+	height 100%
+	perspective 45px
+	overflow hidden
+
+// Top Depth
+.top-depth
+	height 84%
+	width 70%
+	background-color transparent
+	border 1px solid $glass-bc
+	border-top transparent
+	border-bottom transparent
+	
+	margin 0 auto
+
+// Bottom Depth
+.bottom-depth
+	width 100%
+	margin 0 auto
+	background-color transparent
+	height 38px
+	transform rotateX(83deg)
+	border 1px solid $glass-bc
+
+// Glass Cover
+.glass-cover
+	opacity .65
+	position absolute
+	z-index $index-4
+	top 0
+	left 0
+	background linear-gradient(top, $glass-cc, white)
+	width 100%
+	height 100%
+	transition all .3s ease
+	transform translateY(0%)
+
+// Glass Cover Bottles
+.bottles-container
+	position absolute
+	left 0
+	top 0
+	width 100%
+	height 100%
+	z-index $index-2
+	>img
+		position absolute
+		top 14%
+		left 50%
+		margin-left -25%
+		max-width 30px
+		height 94px
+		transition all .2s ease
+		// Initial State
+		transform translateY(-7em)
+		&:hover
+			cursor pointer
+			opacity .85
+
+// Machine Pole
+.machine-pole-wrapper
+	z-index 100
+	width 100%
+	height 100%
+	top 0
+	left 0
+	position absolute
+
+.machine-pole-container
+	position relative
+	width 100%
+	height 100%
+
+// To move the pole
+.machine-pole
+	position absolute
+	width 100%
+	height 100%
+	transition: all 1s
+	// Normal State
+	transform translateX(-3%)
+
+.pole
+	position absolute
+	width ($machine-spacer * .75)
+	left 0
+	top 0
+	height 100%
+	background-color $machine-tc
+	transition: all 1s
+	box-shadow 4px 3px 8px rgba(0,0,0, .45)
+
+.machine-claw-wrapper
+	z-index 100
+	width 100%
+	height 100%
+	top 0
+	left 0
+	position absolute
+
+// To move the claw
+.machine-claw-container
+	position relative
+	width 100%
+	height 100%
+	transition all 1s ease
+	// Normal State
+	transform translateY(10%)
+	
+.claw-bottles
+	width $bottle-width
+	height 77px
+	display inline-block
+	position absolute
+	left 25px
+	opacity 1
+	top -26px
+	z-index $index-1
+	// Reset
+	// Fix Me
+	img
+		opacity 0
+		width 100%
+		position absolute
+		display inline-block
+
+.machine-claw
+	width $machine-spacer * 3.25
+	height @width
+	padding $machine-spacer * .35
+	background-color $machine-mc
+	position absolute
+	border-bottom ($machine-spacer * .25) solid $machine-tc
+	left ($machine-spacer * .75)
+	top 0
+	z-index $index-2
+	>img
+		display inline-block
+		margin-top 16%
+		width 100%
+	
+	&:after
+		content ''
+		color black
+		position absolute
+		right 0
+		top -12px
+		width: 0
+		height: 0
+		border-style: solid
+		border-width: 12px 0 0 12px
+		border-color: transparent transparent transparent darken($machine-mc, 20%)
+
+
+	
+	&:before
+		content ''
+		color black
+		position absolute
+		left 0
+		top -12px
+		width: 0
+		height: 0
+		border-style: solid
+		border-width: 12px 12px 0 0
+		border-color: transparent darken($machine-mc, 20%) transparent transparent
+
+
+
+
+
+
+
+
+
+
+
+
+/* Bottles Section       :-
+--------------------------- */
+.shelf-block
+	background-color transparent
+
+.shelf-bottles
+	height 100%
+	position absolute
+	left 0
+	bottom .25em
+	width 100%
+	z-index $index-5
+	
+	img
+		width $bottle-width
+		position absolute
+		left 44%
+		margin-left -(@width / 2)
+		
+
+		&:first-child
+			margin-left -.35em
+			margin-top -.35em
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@import 'css/animation'
+
+
+
+
+
+
+
+
+
+
+
+/* Machine Overlay       :-
+--------------------------- */
+
+.machine-overlay
+	position fixed
+	top 0
+	left 0
+	z-index $index-10
+	height 100%
+	width 100%
+	transition all .5s ease
+	text-align center
+	opacity 0
+	visibility hidden
+	background-color rgba(0,0,0, .75)
+	
+	.machine-overlay-container
+		position relative
+		max-width $machine-width
+		max-height $machine-height
+		margin ($machine-spacer * 6) auto
+	&.active
+		opacity 1
+		visibility visible
+		
+	
+
+.machine-overlay-inner
+	position absolute
+	left 0
+	top 0
+	width 100%
+	height 100%
+	opacity 0
+	transition all .2s ease
+	&.active
+		opacity 1
+
+.machine-overlay-bottle
+	width 100%
+	padding-top 8em
+	svg
+		display inline-block
+		width 25%
+		height 40%
+	@media (max-width: 1200px)
+		padding-top 5em
+	@media (max-width: 900px)
+		padding-top 3em
+
+.bottle-line
+	margin-top $machine-spacer * 2
+	color white
+	letter-spacing .1em
+	font-size .8em
+	font-weight 600
+	font-family $main-font
+
+
+
+/* Browser Fallbacks     :-
+--------------------------- */
+.browser-support
+	display none
+	border-radius ($machine-spacer * .25)
+	background-color $machine-lc
+	border-bottom ($machine-spacer * .25) solid darken($machine-lc, 10%)
+	width 50%
+	padding $machine-spacer * 2
+	margin ($machine-spacer * 4) auto
+	text-align center
+	font-family $main-font
+	p
+		margin-bottom $machine-spacer
+		color darken($machine-lc, 50%)
+.browser-ie
+	.machine-container
+		display none
+	.browser-support
+		display block
+
+
+
+.browser-logos
+	margin-top $machine-spacer * 2
+	a
+		display inline-block
+		width ($machine-spacer * 4)
+		margin 0 ($machine-spacer * .75)
+		text-decoration none
+		color darken($machine-lc, 50%)
+		&:hover
+			opacity .8
+	img
+		display inline-block
+		width 100%
+		height auto
+	
+	.text
+		display inline-block
+		margin-top ($machine-spacer * .5)
+

@@ -1,0 +1,509 @@
+/* Animations Variables  :-
+--------------------------- */
+
+
+// So we can time everything together we will set all teh animation duration to a fixed number
+// and all keyframes will need to follow the same concept a step every 10%
+// this way we can control all the animations seprately with the same timing.
+$anim-dur = 5s
+
+
+/* Activating Classes [General Classes] :-
+------------------------------------------ */
+.grapping-bottle
+	.glass-cover
+		animation $anim-dur openGlass linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+	
+	.hide-bottle
+		transition all .2s ease
+		opacity 0
+	
+	.choose-drink
+		opacity 0
+	.drink-me
+		opacity 1
+		transition-delay $anim-dur
+
+
+// This class activates the bottle stacking illusion.
+.moving-bottles
+	.bottle-back
+		opacity 0
+		animation $anim-dur bottleBack linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+	.bottle-moving
+		margin-top -.35em
+		margin-left -.35em!important
+		animation $anim-dur bottleMoving linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+	.bottle-front
+		opacity 1
+		animation $anim-dur bottleFront linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+
+
+// Grabs Coke Bottle, Using coke specific keyframes.
+.grab-bottle-coke
+	// Animation To Coke Bottle
+	// Moves pole and claw to proper positions
+	.switching-coke
+		animation $anim-dur cokeToGlass linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+	.machine-claw-container
+		animation $anim-dur clawToCoke linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+	.machine-pole
+		animation $anim-dur poleToCoke linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+	.claw-coke
+		opacity 0
+		animation $anim-dur clawChangeBottle linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+	.bottle-coke
+		animation $anim-dur bottleInGlass linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+	
+// Grabs Sprite Bottle, Using sprite specific keyframes.
+.grab-bottle-sprite
+	// Animation To Coke Bottle
+	// Moves pole and claw to proper positions
+	.switching-coke
+		animation $anim-dur spriteToGlass linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+	.machine-claw-container
+		animation $anim-dur clawToSprite linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+	.machine-pole
+		animation $anim-dur poleToSprite linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+	.claw-sprite
+		opacity 0
+		animation $anim-dur clawChangeBottle linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+	.bottle-sprite
+		animation $anim-dur bottleInGlass linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+
+
+// Grabs Diet Bottle, Using sprite specific keyframes.
+.grab-bottle-diet
+	// Animation To Coke Bottle
+	// Moves pole and claw to proper positions
+	.switching-coke
+		animation $anim-dur dietToGlass linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+	.machine-claw-container
+		animation $anim-dur clawToDiet linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+	.machine-pole
+		animation $anim-dur poleToDiet linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+	.claw-diet
+		opacity 0
+		animation $anim-dur clawChangeBottle linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+	.bottle-diet
+		animation $anim-dur bottleInGlass linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+
+// Grabs Diet Bottle, Using sprite specific keyframes.
+.grab-bottle-dasani
+	// Animation To Coke Bottle
+	// Moves pole and claw to proper positions
+	.switching-coke
+		animation $anim-dur dietToGlass linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+	.machine-claw-container
+		animation $anim-dur clawToDasani linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+	.machine-pole
+		animation $anim-dur poleToDasani linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+	.claw-dasani
+		opacity 0
+		animation $anim-dur clawChangeBottle linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+	.bottle-dasani
+		animation $anim-dur bottleInGlass linear
+		animation-iteration-count 1
+		animation-fill-mode forwards
+
+/* General Keyframes     :-
+--------------------------- */
+
+// Drops active bottle to glass container.
+@keyframes bottleInGlass
+	0%, 60%
+		transform translateY(-7em)
+	100%
+		transform translateY(0)
+
+// Open Glass Container
+@keyframes openGlass
+	0%, 95%
+		transform translateY(0%)
+	100%
+		transform translateY(-100%)
+
+// Switching Claw bottle to active bottle
+// Global and will be used on all bottle types.
+@keyframes clawChangeBottle
+	0%, 20%
+		opacity 0
+	24%, 60%
+		opacity 1
+	62%, 100%
+		opacity 0
+
+// Drops in the bottle hidden in the back, to give the illusion that the bottle row is re-filling again.
+@keyframes bottleBack
+	0%, 85%
+		opacity 0
+	100%
+		opacity 1
+
+// Bottle Moving infront from the back to replace the bottle that got grabbed by the illusion of the claw.
+@keyframes bottleMoving
+	0%, 74%
+		transform translateY(0) translateX(0)
+	75%
+		transform translateY(.05em) translateX(-.05em)
+	100%
+		transform translateY(.41em) translateX(-.45em)
+
+// Bottle Front, Hiding the bottle when the claw is right next to it.
+// Starts at 30%
+@keyframes bottleFront
+	0%, 20%
+		opacity 1
+	30%, 100%
+		opacity 0
+
+/* Coke Bottle Keyframes :-
+--------------------------- */
+
+// Pole to Coke Bottle, Then to Glass Container.
+@keyframes poleToCoke
+	0%
+		transform translateX(-3%)
+	10%
+		transform translateX(10%)
+	// Coke Bottle Position
+	20%
+		transform translateX(14%)
+	// Delay
+	30%
+		transform translateX(14%)
+	40%
+		transform translateX(60%)
+	50%
+		transform translateX(95%)
+	60%
+		transform translateX(105%)
+	70%
+		transform translateX(105%)
+	80%
+		transform translateX(70%)
+	90%
+		transform translateX(50%)
+	100%
+		transform translateX(-3%)
+
+// Move Claw to Coke Bottle Location
+// the Glass container location while the Pole is moving
+@keyframes clawToCoke
+	0%
+		transform translateY(10%)
+	10%
+		transform translateY(10%)
+	20%
+		transform translateY(10%)
+	30%
+		transform translateY(10%)
+	40%
+		transform translateY(20%)
+	50%
+		transform translateY(30%)
+	60%
+		transform translateY(40%)
+	70%
+		transform translateY(40%)
+	80%
+		transform translateY(20%)
+	90%
+		transform translateY(10%)
+	100%
+		transform translateY(10%)
+
+
+
+/* Sprite Bottle Keyframes :-
+--------------------------- */
+
+// Pole to Coke Bottle, Then to Glass Container.
+@keyframes poleToSprite
+	0%
+		transform translateX(-3%)
+	10%
+		transform translateX(10%)
+	// Coke Bottle Position
+	20%
+		transform translateX(30.6%)
+	// Delay
+	30%
+		transform translateX(30.6%)
+	40%
+		transform translateX(60%)
+	50%
+		transform translateX(95%)
+	60%
+		transform translateX(105%)
+	70%
+		transform translateX(105%)
+	80%
+		transform translateX(70%)
+	90%
+		transform translateX(50%)
+	100%
+		transform translateX(-3%)
+
+// Move Claw to Coke Bottle Location
+// the Glass container location while the Pole is moving
+@keyframes clawToSprite
+	0%
+		transform translateY(10%)
+	10%
+		transform translateY(10%)
+	20%
+		transform translateY(35%)
+	30%
+		transform translateY(35%)
+	40%
+		transform translateY(35%)
+	50%
+		transform translateY(40%)
+	60%
+		transform translateY(45%)
+	70%
+		transform translateY(40%)
+	80%
+		transform translateY(20%)
+	90%
+		transform translateY(10%)
+	100%
+		transform translateY(10%)
+
+
+/* Diet Bottle Keyframes :-
+--------------------------- */
+
+// Pole to Coke Bottle, Then to Glass Container.
+@keyframes poleToDiet
+	0%
+		transform translateX(-3%)
+	10%
+		transform translateX(10%)
+	// Coke Bottle Position
+	20%
+		transform translateX(47.5%)
+	// Delay
+	30%
+		transform translateX(47.5%)
+	40%
+		transform translateX(60%)
+	50%
+		transform translateX(95%)
+	60%
+		transform translateX(105%)
+	70%
+		transform translateX(105%)
+	80%
+		transform translateX(70%)
+	90%
+		transform translateX(50%)
+	100%
+		transform translateX(-3%)
+
+// Move Claw to Coke Bottle Location
+// the Glass container location while the Pole is moving
+@keyframes clawToDiet
+	0%
+		transform translateY(10%)
+	10%
+		transform translateY(10%)
+	20%
+		transform translateY(60.3%)
+	30%
+		transform translateY(60.3%)
+	40%
+		transform translateY(60.3%)
+	50%
+		transform translateY(40%)
+	60%
+		transform translateY(45%)
+	70%
+		transform translateY(40%)
+	80%
+		transform translateY(20%)
+	90%
+		transform translateY(10%)
+	100%
+		transform translateY(10%)
+
+
+/* Diet Bottle Keyframes :-
+--------------------------- */
+
+// Pole to Coke Bottle, Then to Glass Container.
+@keyframes poleToDasani
+	0%
+		transform translateX(-3%)
+	10%
+		transform translateX(10%)
+	// Coke Bottle Position
+	20%
+		transform translateX(14%)
+	// Delay
+	30%
+		transform translateX(14%)
+	40%
+		transform translateX(60%)
+	50%
+		transform translateX(95%)
+	60%
+		transform translateX(105%)
+	70%
+		transform translateX(105%)
+	80%
+		transform translateX(70%)
+	90%
+		transform translateX(50%)
+	100%
+		transform translateX(-3%)
+
+// Move Claw to Coke Bottle Location
+// the Glass container location while the Pole is moving
+@keyframes clawToDasani
+	0%
+		transform translateY(10%)
+	10%
+		transform translateY(10%)
+	20%
+		transform translateY(85.7%)
+	30%
+		transform translateY(85.7%)
+	40%
+		transform translateY(85.7%)
+	50%
+		transform translateY(40%)
+	60%
+		transform translateY(45%)
+	70%
+		transform translateY(40%)
+	80%
+		transform translateY(20%)
+	90%
+		transform translateY(10%)
+	100%
+		transform translateY(10%)
+
+
+
+
+
+
+
+/* Tooltips              :-
+--------------------------- */
+
+
+.tooltip
+	position absolute
+	right - $machine-spacer * 6
+	width $machine-spacer * 5
+	background-color darken($machine-mc, 10%)
+	height auto
+	padding $machine-spacer * .75
+	text-align center
+	border-radius $machine-spacer * .25
+	
+	animation 4s tooltipFloat linear infinite
+	animation-fill-mode forwards
+	transition all .2s ease
+
+	&:after
+		content ''
+		position absolute
+		left 10%
+		top 95%
+		width 0
+		height 0
+		border-style solid
+		border-width 0 0 20px 15px
+		border-color transparent transparent transparent darken($machine-mc, 10%)
+		transform rotate(20deg)
+
+
+.tooltip-text
+	color white
+	text-align center
+	font-weight 500
+	letter-spacing .1em
+	line-height 1.25em
+	display inline-block
+	width 100%
+	font-size 10px
+	font-family arial, sans-serif
+	font-size 13px
+
+
+.drink-me
+	top 56%
+	opacity 0
+
+
+.choose-drink
+	opacity 1
+
+@keyframes tooltipFloat
+	0%
+		transform translateY(-($machine-spacer * .3))
+	25%
+		transform translateY(($machine-spacer * .3))
+	50%
+		transform translateY(-($machine-spacer * .3))
+	75%
+		transform translateY(($machine-spacer * .3))
+	100%
+		transform translateY(-($machine-spacer * .4))
+
+
+
+
+
+
+

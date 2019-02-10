@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html dir="ltr" lang="en-US"class="browser-ie"> <![endif]-->
+<!--[if lt IE 7 ]> <html dir="ltr" lang="en-US" class="browser-ie"> <![endif]-->
+<!--[if IE 7 ]>    <html dir="ltr" lang="en-US" class="browser-ie"> <![endif]-->
+<!--[if IE 8 ]>    <html dir="ltr" lang="en-US" class="browser-ie"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coke CSS3 Tutorial - Advanced</title>
+  <link rel="stylesheet" href="../common/styles/highlight/androidstudio.css">
+  <!-- <link rel="stylesheet" href="../common/styles//bootstrap/bootstrap.css"> -->
+  <!-- <link rel="stylesheet" href="../common/styles//bootstrap/bootstrap-theme.css"> -->
+  <link rel="stylesheet" href="../common/styles/tutorial.css">
+
+	<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+	
+</head>
+<body>
+	
+	<div class="container">
+		
+		<h1>Advanced CSS3</h1>
+		<hr>
+        <p>Now that you've learned some CSS <a href="/css/css-basics.html">basics</a>, it's time to dive into some more advanced techniques. In this tutorial we'll get started creating CSS for different device sizes, look closely at what is and isn't support by browsers, check out the transform property, and get a taste of simple CSS animation. Pretty soon, you'll be ready to take on the <a href="/css/css-final.html">Final Project</a> and create a functioning <a href="/css/">Coca-Cola vending machine</a> using CSS3!</p>
+                
+               <strong>Table of Contents:</strong>
+                <ul>
+                    <li><a href="#responsive">Responsive CSS</a></li>
+                    <li><a href="#support">CSS Browser Support</a></li>
+                    <li><a href="#transform">CSS3 Transform</a></li>
+                    <li><a href="#animation">CSS3 Animations</a></li>
+                    <li><a href="#tutorial">Mini Tutorial</a></li>
+                </ul>
+                
+                <hr>
+
+
+        <h2><a href="#responsive" id="responsive" class="main-anchor">Responsive CSS:</a></h2>
+		<p>Using media queries we can achieve any layout we want on the right device. In the previous <a href="/css/css-basics.html">tutorial</a>, we learned what media queries are. Now, we'll dig in and put them to use.
+
+		<p>To make media queries work, we need to add a meta tag to our HTML <span class="code-snippet">head</span>, like the following:</p>
+
+		<div class="code-view">
+			<ul class="code-tabs">
+				<li><a href="#" class="active" data-tab="css">CSS</a></li>
+			</ul>
+
+
+			<div class="tab tab-css tab-active">
+				<div class="code-container">
+					<div class="code">
+						<code>
+<pre>&#60;meta name="viewport" content="width=device-width, initial-scale=1"&#62;</pre>
+						</code>
+					</div>
+				</div><!-- End Code Container -->
+			</div>
+		</div>
+
+		<p>The above meta tag simply tells the browser to resize our browser width according to the device width, whether it is a mobile phone screen or large monitor.</p>
+
+		<p>In the following JSFiddle snippet, we have 2 columns. On desktop view they are side by side but on mobile they stack one below the other. We do this by using a media query that changes the width of the content from 50% to 100% on mobile. We also add a small margin-bottom to separate the column and improve readability.</p>
+        
+        		<div class="notes-container">
+			<p><span class="link-snippet">Link:</span> JSFiddle - <a href="http://jsfiddle.net/YoussefSH/d7jv641x/" target="_blank">2 column example</a>.</p>
+		</div>
+		
+		<p>This example demonstrates the basic capability of the media query. There are, however, certain limitations. It is not possible to change HTML layout with just CSS. So, for example, if a menu was above the content block in the HTML, it won’t be possible to show it below the content block without some visual tricks involving hard-coding heights and using absolute positioning. But in most cases, you can avoid this simply by changing the location of the element in the HTML.</p>
+
+		<p>In general, pages should be designed to look good for mobile and desktop, as well as keep a visual ordering of elements on the page consistent in both environments. Responsive design takes all of these consideration into account and seeks to provide a consistent experience across all platforms.</p>
+
+
+		
+		<hr>
+
+		<h2><a href="#support" id="support" class="main-anchor">CSS3 Browser Support:</a></h2>
+
+        <p>While most modern browsers support CSS3, outdated browsers like Internet Explorer 8 and 9 do not. Fortunately, newer versions of IE (IE10 and 11) do support CSS3. When developing CSS for the web, it's important to understand what browsers your user demographic is using. Older age groups and large businesses are more likely to use Internet Explorer and in some cases, outdated versions of IE. If you find yourself needing to support outdated browsers, it's crucial to understand which CSS properties are supported.</p>
+
+		<p>There are many ways to know if a specific property is supported. One of the most widely used tools is <a href="http://caniuse.com/" target="_blank">caniuse.com</a>. Here, you'll find an up-to-date, thorough resource.</p>
+
+		<hr>
+
+		<h2><a href="#transform" id="transform" class="main-anchor">CSS3 Transform:</a></h2>
+
+		<p>The CSS3 transform property allows us to change an element’s appearance and position without actually moving it from its original position within the page. In the below example we will talk about different ways we can use the transform property. Below, you'll see an example of each these properties in action.</p>
+		
+		<h6>Scale</h6>
+		<p>Using <span class="code-snipept">transform: scale(.8);</span> we can scale our element down to 80% of its original size. We also use this property to make shapes large. For example <span class="code-snippet">1.5</span> would make our square 50% larger.</p>
+
+		<h6>Rotate</h6>
+		<p>By using <span class="code-snippet">transform: rotate(45deg);</span>, we can rotate our square 45 degrees to create a diamond shape.</p>
+
+		<h6>Multiple properties on the same element</h6>
+
+		<p>The translate property moves an element from its position depending on the y-axis and x-axis values, <span class="code-snippet">transform: translate(x, y)</span>.</p>
+
+		<p>We can combine as many transform properties as we want. In this example, we'll use <span class="code-snippet">transform: rotate(45deg);</span> to rotate our square and give us a diamond shape. Then, we'll use <span class="code-snippet">transform: translate(0, 50px)</span> to move our diamond shape 50px to the bottom.</p>
+
+		<p>Alternatively, we can use percentage values on our transforms. With percentage values, the transform will be based on the element's height and width. For example, if we have a 100px by 100px square and we use <span class="code-snippet">translateX(100%)</span>, our element will go to the right 100px because our square's width is 100px.</p>
+
+		<h6>Perspective:</h6>
+
+		<p>When the perspective property is applied to an element, its children will be treated as 3D objects. This gives us the ability to perform various 3D transformations.</p>
+		
+		<div class="notes-container">
+			<p><span class="link-snippet">Link:</span> More about perspective - <a href="https://css-tricks.com/almanac/properties/p/perspective/" target="_blank">Source</a>.</p>
+		</div>
+
+		<p data-height="355" data-theme-id="0" data-slug-hash="mJWpKr" data-default-tab="result" data-user="Youssefsh" class='codepen'>See the Pen <a href='http://codepen.io/Youssefsh/pen/mJWpKr/'>mJWpKr</a> by Youssef (<a href='http://codepen.io/Youssefsh'>@Youssefsh</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+
+		<p>As you can see we can transform pretty much any shape we want to using CSS transforms. The next step is learning how to combine transforms with animations.</p>
+        
+        <hr>
+
+		<h2><a href="#animation" id="animation" class="main-anchor">CSS3 Animations:</a></h2>
+
+		<p>Simply put, CSS animations are merely transforms with keyframes. A typical keyframe animation looks like this:</p>
+
+		<div class="code-view">
+			<ul class="code-tabs">
+				<li><a href="#" class="active" data-tab="css">CSS</a></li>
+			</ul>
+
+			<div class="tab tab-css tab-active">
+				<div class="code-container">
+					<div class="code">
+						<code>
+<pre>@keyframes animation-expand {
+  0% {
+    transform: scale(1.5);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.5);
+  }
+}
+
+.animation-expand {
+  animation: 1s animation-expand linear infinite;
+}</pre>
+						</code>
+					</div>
+				</div><!-- End Code Container -->
+			</div>
+
+		</div>
+
+		<p>With the @keyframes rule, we can split up an animation by using percentage values. In the example above, we've created three keyframes at 0%, 50%, and 100%. Within each keyframe, we use the transform property we just learned about to manipulate the shape. This rule allows for as much complexity as you want - meaning we can combine several different transforms into one animation.</p>
+        
+        <p>Beneath @keyframes rule, we've defined the .animation-expand class. This class uses the animation property to set the keyframes in motion. Read more about the animations property <a href="http://www.w3schools.com/cssref/css3_pr_animation.asp">here</a>.</p>
+
+		<p>Below is an example of everything we just learned in action.</p>
+
+		<p data-height="400" data-theme-id="0" data-slug-hash="Qbpazr" data-default-tab="result" data-user="Youssefsh" class='codepen'>See the Pen <a href='http://codepen.io/Youssefsh/pen/Qbpazr/'>Qbpazr</a> by Youssef (<a href='http://codepen.io/Youssefsh'>@Youssefsh</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+
+
+		<hr>
+
+		<h2><a href="#tutorial" id="tutorial" class="main-anchor">Mini Tutorial:</a></h2>
+		
+		<p>In this mini tutorial, we'll build a responsive layout using CSS3 and some basic HTML. Use <a href="http://codepen.io/pen/">Codepen</a> for this tutorial to speed up your workflow.</p>
+
+		<h6>In the Codepen, set the following CSS options (gear icon next to CSS):</h6>
+
+		<ol>
+			<li>Set CSS Base to: Reset </li>
+			<li>Set Vendor Prefixing to: Autoprefixer.</li>
+		</ol>
+
+        <h6>Getting started:</h6>
+     
+		<p>The layout we are building is very simple. Essentially, we are building a container div, three columns of content inside of it, and a "sticky" topbar that will stick to the top of the screen on mobile devices. This layout, though simple, becomes more complex when it must work on smaller screens as well.</p>
+        
+		<h6>Our Markup:</h6>
+
+        <p>We'll be using dummy text as our content for now. First, we need to apply our classes and divs to make the layout process easier. We are using a 12 column <a href="https://css-tricks.com/dont-overthink-it-grids/">grid system</a> to define the layout. Since we only want three columns, each column will have 4 smaller columns within it (making a total of 12 columns). So we'll use <span class="code-snippet">.col-4</span> and apply a float: left property to our columns along with a clearfix. <a href="https://css-tricks.com/snippets/css/clear-fix/">Clearfix</a> is a common hack that forces an element to self-clear its children. This allows us to create the columns layout we're looking for.</p>
+
+		<p>On mobile, we use a media query to change two aspects of our layout:</p>
+
+		<h6>Our columns:</h6>
+		<p>We need to apply a 100% width to all of our columns once they get into our mobile size. This will result in our columns taking up 100% of the screen width whereas normally they take up 33.333% of our container. Again, this is a technique to make our content more responsive and legible on a smaller screen.</p>
+
+		<h6>Our topbar:</h6>
+		<p>First we'll give our container a padding-top based on our topbar's height. Next, we'll position our topbar fixed to the top and left positions, while giving it a 100% width. By positioning our topbar this way, we are taking it out of the view. Now, whenever the user scrolls the topbar will always stay on the top part of the page. By applying an opacity to the element, users can see the content below it once they start scrolling.</p>
+
+		<h6>Helping Classes:</h6>
+
+		<p>Lastly, we have to define two helping classes. <span class="code-snippet">.show-mobile</span> this shows an element on mobile and hides it from desktop view, by default it's set to <span class="code-snippet">display: none;</span> and once we reach our mobile view, we set it to <span class="code-snippet">display: block;</span>. Next, we have <span class="code-snippet">.hide-mobile</span> which simply hides any element at our mobile width.</p>
+
+		<p data-height="768" data-theme-id="0" data-slug-hash="jPbvPW" data-default-tab="result" data-user="Youssefsh" class='codepen'>See the Pen <a href='http://codepen.io/Youssefsh/pen/jPbvPW/'>jPbvPW</a> by Youssef (<a href='http://codepen.io/Youssefsh'>@Youssefsh</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+		
+		<br><hr><br>
+		
+	</div>
+	
+
+
+
+
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/highlight.pack.js"></script>
+	<script src="js/tutorial.js"></script>
+
+</body>
+</html>

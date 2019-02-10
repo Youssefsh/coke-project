@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html dir="ltr" lang="en-US"class="browser-ie"> <![endif]-->
+<!--[if lt IE 7 ]> <html dir="ltr" lang="en-US" class="browser-ie"> <![endif]-->
+<!--[if IE 7 ]>    <html dir="ltr" lang="en-US" class="browser-ie"> <![endif]-->
+<!--[if IE 8 ]>    <html dir="ltr" lang="en-US" class="browser-ie"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coke CSS3 Tutorial - Basic</title>
+  <link rel="stylesheet" href="../common/styles/highlight/androidstudio.css">
+  <!-- <link rel="stylesheet" href="../common/styles//bootstrap/bootstrap.css"> -->
+  <!-- <link rel="stylesheet" href="../common/styles//bootstrap/bootstrap-theme.css"> -->
+  <link rel="stylesheet" href="../common/styles/tutorial.css">
+
+	<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+	
+</head>
+<body>
+	
+	<div class="container">
+		
+		<h1>Basic CSS3</h1>
+		<hr>
+        <p>Why learn CSS? If you've ever wanted to build something for the web, you'll need to know HTML and CSS. These languages are the basic building blocks of web pages, applications, and some mobile applications. Every webpage you look at is written in a language called HTML. You can think of HTML as the skeleton that gives every webpage structure. What makes webpages pretty? That's CSS—Cascading Style Sheets. Think of it like skin and makeup that covers the bones of HTML.</p>
+        
+        <p>In this tutorial, you'll get a taste of CSS by learning some of the basics. Once you feel ready, you can progress to <a href="/css/css-advanced.html">Advanced CSS</a> to learn about how to use CSS to create responsive (mobile-friendly) webpages and basic CSS animation. Finally, we'll learn how to build a functioning <a href="/css/">Coca-Cola vending machine</a> in the <a href="/css/css-final.html">CSS Final Project</a>!</p>
+        
+        <p>But first things first: the basics. Let's jump in!</p>
+        
+            
+               <strong>Table of Contents:</strong>
+                <ul>
+                    <li><a href="#terms">Terms and Defintions</a></li>
+                    <li><a href="#browser">The Role of the Browser</a></li>
+                    <li><a href="#performance">Performance</a></li>
+                    <li><a href="#tutorial">Mini Tutorial</a></li>
+                </ul>
+                
+                <hr>
+		
+        <h2><a href="#terms" id="terms" class="main-anchor">Terms and Defintions:</a></h2>
+        <p>Let's get started by learning some basic terminology.</p>
+     
+		<p><strong>Cascading Style Sheets (CSS)</strong> is a style sheet language used for describing the look and formatting of a document written in a markup language. While most often used to change the style of web pages and user interfaces written in HTML and XHTML, the language can be applied to any kind of XML document, including plain XML, SVG and XUL. Along with HTML and JavaScript, CSS is a cornerstone technology used by most websites to create visually engaging web pages, user interfaces for web applications, and user interfaces for many mobile applications.</p>
+		
+		<div class="notes-container">
+			<p><span class="link-snippet">Link:</span> <a href="http://en.wikipedia.org/wiki/Cascading_Style_Sheets" target="_blank"> Wikipedia - CSS</a></p>
+		</div>
+        
+        <br>
+
+		<p><strong>CSS3</strong> is the latest evolution of the Cascading Style Sheets language and aims to extend CSS2.1. The term “CSS3” is not just a reference to the new features in CSS, but the third level in the progress of the <a href="http://www.w3.org/Style/CSS/current-work.en.html" target="_blank">CSS specification</a>. CSS3 contains just about everything that’s included in CSS2.1 (the previous version of the specification). It also adds new features to help developers solve a number of problems without the need for non-semantic markup, complex scripting, or extra images.</p>
+		
+		<div class="notes-container">
+			<p><span class="link-snippet">Link:</span> <a href="http://www.w3.org/Style/CSS/current-work.en.html" target="_blank"> w3 - Current Work</a></p>
+		</div>
+
+        <br>
+        
+        <p>The <strong>Document Object Model (DOM)</strong> is a cross-platform and language-independent convention for representing and interacting with objects in HTML, XHTML and XML documents. The nodes of every document are organized in a tree structure, called the DOM tree.</p>
+
+		<p>Objects in the DOM tree may be addressed and manipulated by using methods on the objects using application programming interface (API).</p>
+
+		<div class="notes-container">
+			<p><span class="link-snippet">Link:</span> CSS Tricks - <a href="https://css-tricks.com/dom/" target="_blank">Source</a></p>
+		</div>
+        
+        <br>
+        
+		<h3>Common CSS3 properties:</h3>
+		<ol>
+			<li>
+				<a href="http://www.quackit.com/css/css3/properties/css_border-radius.cfm" target="_blank">border-radius</a>
+				<ul>
+					<li>Allows creation of rounded corners without use of images.</li>
+				</ul>
+			</li>
+			<li>
+				<a href="http://www.quackit.com/css/css3/properties/css_transform.cfm" target="_blank">transform</a>
+				<ul>
+					<li>Various dimensional transformations (rotate, stretch, etc).</li>
+				</ul>
+			</li>
+			<li>
+				<a href="http://www.quackit.com/css/css3/properties/css_transition.cfm" target="_blank">transition</a>
+				<ul>
+					<li>Ability to change CSS values smoothly, used in animations.</li>
+				</ul>
+			</li>
+			<li>
+				<a href="http://www.quackit.com/css/css3/properties/css_animation.cfm" target="_blank">animation</a>
+				<ul>
+					<li>Ability to animate any element with help of transitions.</li>
+				</ul>
+			</li>
+			<li>
+				<a href="http://www.quackit.com/css/css3/properties/css_overflow.cfm" target="_blank">overflow</a>, <a href="http://www.quackit.com/css/css3/properties/css_overflow-x.cfm" target="_blank">overflow-x</a>, <a href="http://www.quackit.com/css/css3/properties/css_overflow-y.cfm" target="_blank">overflow-y</a> and <a href="http://www.quackit.com/css/css3/properties/css_overflow-style.cfm" target="_blank">overflow-style</a>
+				<ul>
+					<li>Control how overflowing content is displayed.</li>
+				</ul>
+			</li>
+
+			<li>
+				<a href="http://www.quackit.com/css/css3/properties/css_box-shadow.cfm" target="_blank">box-shadow</a>
+				<ul>
+					<li>Shadows.</li>
+				</ul>
+			</li>
+
+			<li>
+				<a href="http://www.quackit.com/css/css3/properties/css_opacity.cfm" target="_blank">opacity</a>
+				<ul>
+					<li>Transparency for elements.</li>
+				</ul>
+			</li>
+			
+		</ol>
+
+
+
+		<div class="notes-container">
+			<p><span class="link-snippet">Link:</span> General list of CSS3 properties can be found <a target="_blank" href="http://www.quackit.com/css/css3/properties/">here</a>.</p>
+		</div>
+
+		<hr>
+        
+        
+        <h2><a href="#browser" id="browser" class="main-anchor">The Role of the Browser:</a></h2>
+        <p>When working with CSS, it is important to be aware of the user's browsing environment. The size of the screen and the kind of browser are the most important traits of the user's browsing environment. As of May 2015, the majority of people use Google Chrome (65%) and Firefox (21.5%). Each browser renders a web page slightly differently and it is important to understand these differences in order to create a consistent experience across all major browsers.</p>
+            
+        <div class="notes-container">
+            <p><span class="note-snippet">Note:</span> W3 - <a href="http://www.w3schools.com/browsers/browsers_stats.asp">Source</a></p>
+		</div>
+        
+        <br>
+
+        		<h3>CSS3 Rendering engines:</h3>
+
+		<p>Each browser has its own rendering engine. For example, Chrome and Safari use Webkit, Firefox uses Gecko, older versions of Internet Explorer use the Trident engine, and the new IE rendering engine has code name Spartan.</p>
+
+        <p>Engines vary by CSS compatibility levels, performance, and features supported. It is highly recommended to test websites in all major browsers. Tools like <a href="https://www.browserstack.com/">BrowserStack</a> and <a href="https://saucelabs.com">Sauce Labs</a> help you conduct cross-browser testing quickly and efficiently. Using prefixes and media queries (covered below), you can create CSS that addresses each rendering engine's idiosyncracies.</p>
+
+		<div class="notes-container">
+			<p><span class="link-snippet">Link:</span> Wikipedia - <a href="http://en.wikipedia.org/wiki/Comparison_of_layout_engines_%28Cascading_Style_Sheets%29" target="_blank">Source</a></p>
+		</div>
+		
+		<br>
+        
+        <h3>Browser Prefixes:</h3>
+
+		<ol>
+			<li>Chrome, Safari and any browser using webkit engine : <span class="code-snippet">-webkit-</span></li>
+			<li>Firefox : <span class="code-snippet">-moz-</span></li>
+			<li>Internet Explorer : <span class="code-snippet">-ms-</span></li>
+			<li>Opera : <span class="code-snippet">-o-</span></li>
+		</ol>
+		
+		<h5>For example:</h5>
+		<p>At first, the <span class="code-snippet">border-radius</span> property was not fully articulated in CSS3, so Chrome used <span class="code-snippet">-webkit-border-radius</span> and Firefox used <span class="code-snipept"> -moz-border-radius</span>. After the final acceptance of <span class="code-snippet">border-radius</span> by the W3C committee, all CSS3-compatible browsers support the standard and prefixed versions for maximum compatibility.</p>
+
+		<p>The same thing applies to all properties that are not yet finalized by the W3C committee.</p>
+        
+        <br>
+        
+		<h3>CSS3 Media Queries:</h3>
+
+		<p>A <strong>Media Query</strong> consists of a media type and at least one expression that limits the style sheet's scope by using features such as width, height, and color. Media queries were added in CSS3 and let the presentation of content be tailored to a specific range of output devices without having to change the content itself. This technique is crucial to creating CSS that adapts to different screen sizes.</p>
+
+		<div class="notes-container">
+			<p><span class="link-snippet">Link:</span> MDN - <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Media_queries">Source</a>.</p>
+			<p><span class="link-snippet">Link:</span> CSSTricks - <a href="https://css-tricks.com/snippets/css/media-queries-for-standard-devices/" target="_blank">Source</a>.</p>
+		</div>
+
+		<h5>Code Example:</h5>
+
+		<div class="code-view">
+			<ul class="code-tabs">
+				<li><a href="#" class="active" data-tab="css">CSS</a></li>
+			</ul>
+
+
+			<div class="tab tab-css tab-active">
+				<div class="code-container">
+					<div class="code">
+						<code>
+<pre>@media (min-width: 700px) and (max-width: 900px) {
+  CSS rules here...
+}</pre>
+						</code>
+					</div>
+				</div><!-- End Code Container -->
+			</div>
+		</div>
+
+		<div class="notes-container">
+			<p><span class="note-snippet">Note:</span> Any rules applied in the previous <strong>Media Query</strong> will only work if the screen width is between 700px to 900px.</p>
+		</div>
+
+		<p>For example, if we apply a <span class="code-snippet">background-color: red;</span> to our body tags inside the previous <strong>Media Query</strong> we made, the body will have a red background only when the screen width is between 700-900px. If our viewport (screen size) increases or decreases outside of our 700-900px range, our body's background will go back to its default value (white).</p>
+
+		<div class="code-view">
+			<ul class="code-tabs">
+				<li><a href="#" class="active" data-tab="css">CSS</a></li>
+			</ul>
+
+
+			<div class="tab tab-css tab-active">
+				<div class="code-container">
+					<div class="code">
+						<code>
+<pre>@media (min-width: 700px) and (max-width: 900px) {
+  body {
+    background-color: red;
+  }
+}</pre>
+						</code>
+					</div>
+				</div><!-- End Code Container -->
+			</div>
+		</div>
+		
+
+
+		<br>
+
+
+
+		<hr>
+
+        
+        <h2><a href="#performance" id="performance" class="main-anchor">Performance:</a></h2>
+        
+        <p>On a high level, CSS is all about applying styling rules to DOM nodes using selectors. Within each selector, there are properties (discussed earlier). The more rules there are, the more computationally expensive that page is to render. For this reason, performance is an important factor to consider when creating CSS.</p>
+
+		<h5>Tips for improving CSS performance:</h5>
+
+		<ol>
+			<li>Eliminating dead code helps the most.</li>
+			<li>Be very careful with “heavy” selectors. For example substring matching [class*=foo] is significantly slower than direct string matching, like .foo.</li>
+			<li>Try keeping selectors short. Deeply nested selectors hurt performance, as browser will have to traverse tree every time when DOM node is created. If matching is happening on a, lets say, class - it is much simpler test to do.</li>
+			<li>Use debugging tools to see how long things take.</li>
+		</ol>
+	
+
+		<div class="notes-container">
+			<p><span class="note-snippet">Note:</span> You can use Chrome dev tools to see how long Chrome spent parsing the page, applying CSS rules, etc. Also, Chrome's continuous painting mode will show how the page is rendered in slow motion and the rendering sequence of different elements.</p>
+
+			<p><span class="link-snippet">Link:</span> Ben Frain <a href="http://benfrain.com/css-performance-revisited-selectors-bloat-expensive-styles/" target="_blank">Source</a>.</p>
+
+			<p><span class="link-snippet">Link:</span> Shay Howe <a href="http://learn.shayhowe.com/advanced-html-css/performance-organization/" target="_blank">Source</a>.</p>
+		</div>
+        
+        <h3>CSS3 Hardware acceleration:</h3>
+
+		<p>With additional computational complexity that was introduced with CSS3 (animations, 3D transforms, dynamic shadows, etc) it was clear that it will be very hard to achieve smooth performance without help of the GPU.</p>
+
+		<div class="notes-container">
+			<p><span class="note-snippet">Note:</span> GPU stands for Graphical Processing Unit - a  special device that works together with CPU (Central Processing Unit) to speed up various graphics related tasks.</p>
+		</div>
+
+		<p>In general, translate and translate3d rules are hardware-accelerated in modern browsers. The browser will use the GPU as much as possible to create a smooth user experience without putting a burden on the CPU.</p>
+		
+		<div class="notes-container">
+			<p><span class="link-snippet">Link:</span> David Wash - <a href="http://davidwalsh.name/translate3d" target="_blank">Source</a></p>
+			<p><span class="link-snippet">Link:</span> Smashing Magazine - <a href="http://www.smashingmagazine.com/2012/06/21/play-with-hardware-accelerated-css/" target="_blank">Source</a></p>
+		</div>
+		
+		
+
+		<hr>
+        
+        <h2><a href="#tutorial" id="tutorial" class="main-anchor">Mini Tutorial:</a></h2>
+        <br>
+
+		<p>In this mini tutorial, we will learn how to create different shapes using CSS.</p>
+
+		<h5>Example 1:</h5>
+		<p>This first example was created with help of the <span class="code-snippet">border-radius</span> CSS3 property which was assigned with a value of 50%. Since the element has equal width and height values, we generated a square with rounded corners set to 50% so it ends up looking like a circle. And that is how we created our CSS version of the circle.</p>
+
+		<h5>Example 2:</h5>
+		<p>In this second example, we are simply using a img tag and our image is a png with a red circle. But in this example we are using <span class="code-snippet">data-uri</span> instead of a .png file.</p>
+
+
+		<h6>Limitations in the previous demo:</h6>
+		<p>The CSS3 example will only work if the browser you are viewing it in supports CSS3, otherwise it will turn to a square.</p>
+		<p>By using an image we were able to create the same result we made using CSS, thus supporting older browsers with no CSS3 support.</p>
+
+		<h6>Demo:</h6>
+		<!-- Codepen Demo -->
+		<p data-height="374" data-theme-id="0" data-slug-hash="YXZYKm" data-default-tab="result" data-user="Youssefsh" class='codepen'>See the Pen <a href='http://codepen.io/Youssefsh/pen/YXZYKm/'>YXZYKm</a> by Youssef (<a href='http://codepen.io/Youssefsh'>@Youssefsh</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+
+
+		<h5>Example 3:</h5>
+		<p>In this final example, let's create a tooltip with a pointer arrow using CSS borders and pseudo elements.</p>
+
+		<p>By using CSS borders, we can create any arrow shape we want. In the following example we'll create an arrow that is pointing to the top. We do this by using the pseudo element <span class="code-snippet">:after</span></p>
+
+		<p>By giving our <span class="code-snippet">:after</span> a width and height of 0, we can control the dimensions of our triangle using the width of the border. In an up arrow, the <span class="code-snippet">border-bottom:</span> is colored while our left and right borders are transparent. The result is a triangle.</p>
+
+		<p>With some positioning, we can center both the tooltip and the arrow exactly in the middle of the text using a percentage left value for the arrow and a width of 100% for our tooltip.</p>
+
+		<h6>Demo:</h6>
+		<!-- Codepen Demo -->
+		<p data-height="268" data-theme-id="0" data-slug-hash="zGwLLd" data-default-tab="result" data-user="Youssefsh" class='codepen'>See the Pen <a href='http://codepen.io/Youssefsh/pen/zGwLLd/'>zGwLLd</a> by Youssef (<a href='http://codepen.io/Youssefsh'>@Youssefsh</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+
+        <br><hr><br>
+		
+	</div>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/highlight.pack.js"></script>
+	<script src="js/tutorial.js"></script>
+
+</body>
+</html>

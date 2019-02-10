@@ -1,0 +1,2328 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html dir="ltr" lang="en-US"class="browser-ie"> <![endif]-->
+<!--[if lt IE 7 ]> <html dir="ltr" lang="en-US" class="browser-ie"> <![endif]-->
+<!--[if IE 7 ]>    <html dir="ltr" lang="en-US" class="browser-ie"> <![endif]-->
+<!--[if IE 8 ]>    <html dir="ltr" lang="en-US" class="browser-ie"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coke CSS Tutorial - Final Project</title>
+  <link rel="stylesheet" href="../common/styles/highlight/androidstudio.css">
+  <!-- <link rel="stylesheet" href="../common/styles//bootstrap/bootstrap.css"> -->
+  <!-- <link rel="stylesheet" href="../common/styles//bootstrap/bootstrap-theme.css"> -->
+  <link rel="stylesheet" href="../common/styles/tutorial.css">
+
+
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				
+				<h1>CSS3 Final Project: Vending Machine Tutorial</h1>
+
+				<hr>
+                
+                <p>Now that you've learned some CSS <a href="/css/css-basics.html">basics</a> and <a href="/css/css-advanced.html">advanced</a> techniques, it's time to put your new skills to use. In this Final Project tutorial, we will be building a functioning Coca-Cola vending machine. View <a href="/css/">the demo here</a>. If you want to get a head start, you can <a href="http://campusbubble.com/coke/projects/css-tutorial-files.zip" target="_blank">download all the project files here.</a> Let's jump in!</p>
+                
+                <strong>Table of Contents:</strong>
+                <ul>
+                    <li><a href="#installation">Setup/Installation</a></li>
+                    <li><a href="#markup-and-styles">Markup and Styles</a></li>
+                    <li><a href="#animation">Animations</a></li>
+                    <li><a href="#javascript">Javascript</a></li>
+                    <li><a href="#conclusion">Conclusion</a></li>
+                </ul>
+                
+                <hr>
+                
+				<h2><a href="#installation" id="installation" class="main-anchor">Installation and Directory files:</a></h2>
+
+                <p>We'll start by creating a new folder structure and getting things ready so we can start writing our markup and CSS styles. We'll be using <a href="https://nodejs.org/">Node.js</a> and <a href="http://gulpjs.com/">Gulp</a> to speed up our workflow. </p>
+
+				<h3>Creating directory files &amp; folders:</h3>
+                
+				<ol>
+				<li>Create a new folder called <strong>'vending-machine'</strong>.</li>
+				<li>Inside of <strong>'vending-machine'</strong>, create the following folders/files:</li>
+					<ul>
+						<li>New folder called <strong>‘assets’</strong>.</li>
+						<li>New file called <strong>'index.html'</strong>.</li>
+						<li>New file called <strong>'gulpfile.js'</strong>.</li>
+						<li>New file called <strong>'package.json'</strong>.</li>
+					</ul>
+				<li>Inside of <strong>‘assets’</strong>, create  the following folders/files:</li>
+					<ul>
+						<li>New folder called <strong>'graphics'</strong></li>
+						<li>New folder called <strong>'styles'</strong></li>
+					</ul>
+				<li>Inside of <strong>'source'</strong>, create another folder called <strong>'stylus'</strong>, and create the following files/folders inside:</li>
+					<ul>
+						<li>New file called <strong>'style.styl'</strong>.</li>
+						<li>New folder called <strong>'stash'</strong>.</li>
+					</ul>
+				</ol>
+
+
+				<hr>
+
+
+				<h3>Installing node:</h3>
+
+				<p><span class="note-snippet">Note:</span> If this is your first time installing Node, check out these tutorials for <a href="http://blog.teamtreehouse.com/install-node-js-npm-mac">OS X</a> and <a href="http://blog.teamtreehouse.com/install-node-js-npm-windows">Windows</a>.</p>
+                
+                <p>Now that we have all the files and folders we need, let's install Node:</p>
+
+				<ol>
+					<li>Install <a href="https://nodejs.org/" target="_blank"><strong>'nodejs'</strong></a>.</li>
+					<li>Install <a href="https://npmjs.com/" target="_blank"><strong>'npm'</strong></a> if it is not installed with nodejs.</li>
+					<li>Open <strong>'package.json'</strong> and add the following:</li>
+				</ol>
+
+					<span class="code-type">JSON</span>
+					<div class="code-container">
+						<div class="code">
+<pre><code>{
+  "devDependencies": {}
+}</code>
+</pre>
+						</div>
+					</div><!-- End Code Container -->
+
+						<p><strong>'package.json'</strong> will contain a list of our installed plugins using <strong>'npm'</strong> and <strong>'gulp'</strong>.</p>
+
+
+				<h3>Installing gulp and plugins:</h3>
+				
+                <p>We'll be using <strong>'gulp'</strong> for 3 main reasons:</p>
+					<ol>
+						<li>Compiling <strong>'stylus'</strong> into <strong>'CSS'</strong>.</li>
+						<li>Local server using <strong>'gulp-connect'</strong>.</li>
+
+						<li>Live reload using <strong>'gulp-connect'</strong> and <strong>'gulp-watch'</strong>.</li>
+
+					</ol>                    
+
+				<p>Open command line and navigate to the location of our <strong>'vending-machine'</strong> folder, use the following command to install plugins, where <strong>'gulp'</strong> is the plugin name.
+				<span class="code-type">Command Line</span>
+					<div class="code-container">
+						<div class="code">
+							<pre><code>npm install gulp -save-dev</code></pre>
+						</div>
+					</div><!-- End Code Container -->
+
+				<p>Next, we need to install the following <strong>'gulp'</strong> plugins:</p>
+
+				<ol>
+					<li>gulp.</li>
+					<li>gulp-connect.</li>
+					<li>gulp-stylus.</li>
+					<li>gulp-watch.</li>
+					<li>nib for stylus.</li>
+				</ol>
+
+                <p><span class="note-snippet">Note:</span> Nib is set of extensions for Stylus CSS preprocessor language. We will be using 'nib' because it provides CSS3 helpers mixins/gradients and to automatically prefix all our CSS properties for a better browser support.</p>
+
+				<p>After installing the previous plugins our <strong>'package.json'</strong> file should look like this:</p>
+				<span class="code-type">JSON</span>
+					<div class="code-container">
+						<div class="code">
+<pre><code>{
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-connect": "^2.2.0",
+    "gulp-stylus": "^2.0.0",
+    "gulp-watch": "^4.1.0",
+    "nib": "^1.1.0"
+  }
+}</code>
+</pre>
+					</div>
+				</div><!-- End Code Container -->
+
+				<p>We're using <span class="code-snippet">-save-dev</span> or <span class="code-snippet">-save</span> so we can install all those plugins at a later point as long as the <strong>'package.json'</strong> file is included in our new directory.</p>
+
+
+				<h3>Setting up gulpfile.js:</h3>
+
+				<p>Gulp is a simple, but powerful system to do all kind of file maniupulation: minifying JavaScript code, compiling CSS with the help of different preprocessor engines, and so on. Gulp is configured with JavaScript-based rules which are stored in <i>gulpfile.js</i>.</p>
+
+				<p>After installing our gulp plugins and nib, we can now start using them directly in our <strong>'gulpfile.js'</strong> file.</p>
+
+				<span class="code-type">Javascript</span>
+				<div class="code-container">
+					<div class="code">
+<pre>
+<code>// Gulp Variables
+var gulp = require('gulp'); // For gulp
+    watch = require('gulp-watch'); // For watching files and auto reload
+    connect = require('gulp-connect'); // For local server and auto reload
+    stylus = require('gulp-stylus'); // For compiling Stylus
+    nib = require('nib'); // A CSS3 extensions for Stylus</code>
+</pre>
+					</div>
+				</div><!-- End Code Container -->
+
+				<p>Next, let's create a variable to hold our paths and call it <span class="code-snippet">paths</span>. Let's add our source stylus link inside of that variable for future usage in our gulp tasks.</p>
+				<span class="code-type">Javascript</span>
+				<div class="code-container">
+					<div class="code">
+<pre>
+<code>// Paths
+var paths = {
+ stylus: [
+  'source/stylus/**/*.styl'
+ ]
+}</code>
+</pre>
+					</div>
+				</div><!-- End Code Container -->
+
+				<h3>Creating a gulp task:</h3>
+
+				<p>Now, let's create a gulp task and call it <span class="code-snippet" data-tab="stylus">stylus</span>. Here we will link the src to our <span class="code-snippet">paths</span> variable.</p>
+				<span class="code-type">Javascript</span>
+				<div class="code-container">
+					<div class="code">
+<pre>
+<code>// Stylus Task
+gulp.task('stylus', function() {
+  gulp.src(paths.stylus)
+    .pipe(stylus({
+      // Tells it to use nib.
+      use: nib(),
+      // Compresses our final CSS to save bandwidth and improve performance
+      compress: true
+    }))
+    // We specify location of compiled file in gulp.dest() rule
+    .pipe(gulp.dest('./assets/styles'))
+    .pipe(connect.reload());
+});
+
+// We also need to add include nib library to the stylesheets with @import 'nib'</code>
+</pre>
+					</div>
+				</div><!-- End Code Container -->
+				<p>This stylus task will find all stylus files in the <span class="code-snippet">gulp.src</span> and compile them to <span class="code-snippet">./assets/styles/</span>.</p>
+				<p>Next, let's create all of our gulp tasks just like the previous one (for the rest of the gulp tasks see the <a href="http://campusbubble.com/coke/projects/css-tutorial-files.zip" target="_blank">project files</a>). Then let's make one final task to combine all the tasks we made, using one command.</p>
+				<span class="code-type">Javascript</span>
+				<div class="code-container">
+					<div class="code">
+<pre>
+<code>// Final Task
+gulp.task('server', ['webserver', 'watch', 'stylus']);</code>
+</pre>
+					</div>
+				</div><!-- End Code Container -->
+
+				<h3>Running our server:</h3>
+
+				<p>Let's get the testing server up and running! Open a new command line window, and write the following:</p>
+
+				<span class="code-type">Command Line</span>
+				<div class="code-container">
+					<div class="code">
+						<pre><code>gulp server</code></pre>
+					</div>
+				</div><!-- End Code Container -->
+
+				<p>Make sure you are in <strong>'root'</strong> directory, where our <strong>'gulpfile.js'</strong> is.</p>
+
+				<hr>
+
+				<!-- Explaining Parts -->
+
+				<h2><a href="#markup-and-styles" id="markup-and-styles" class="main-anchor">Markup and Styles</a></h2>
+                <p>Now that we have our testing server set up, let's dive into the CSS and HTML. We'll be using <a href="https://learnboost.github.io/stylus/">Stylus</a> to improve our CSS workflow. As we create the vending machine, the key will be to split up each part of the machine while keeping in mind how the <a href="/css/">final result</a> will be animated.</p>
+
+				<h3>Why Stylus?</h3>
+
+				<p>Although we could use any preprocessor for this demo, we're going with Stylus for the following reasons:</p>
+				<ol>
+					<li>Very clean and flexible syntax</li>
+					<li>Indentation based syntax makes CSS code structured right away</li>
+					<li>Colons and semicolons (<span class="code-snippet">:</span> and <span class="code-snippet">;</span>) are optional</strong></li>
+					<li>Brackets are optional as well (<span class="code-snippet">{ }</span>)</li>
+					<li>Variables</li>
+					<li>Code mixins</li>
+					<li>Nib (<a href="#">more about nib</a>)</li>
+				</ol>
+
+				<div class="notes-container">
+                    <p><span class="note-snippet">Note:</span> Other available widely used CSS preprocessors include <a href="http://lesscss.org/" target="_blank">LESS</a> and <a href="http://sass-lang.com/" target="_blank">SASS</a>.</p>
+                    
+                    <p><span class="note-snippet">Note:</span> SASS's syntax is similiar to Stylus's but requires the use of <span class="code-snippet">:</span>.</p>
+				</div>
+
+				<h3>Variables:</h3>
+
+				<p>Plain CSS does not have support for variables. For example, let's say you have a main font color in your design. It is not possible to define this color in a single place and then just use it elsewhere dynamically. You're forced to repeat this color everywhere. If this main color changes, all locations where it was used would have to be updated as well.</p>
+
+				<p>With variables it's possible to define a color once and then access its value by variable name.</p>
+
+				<p>For this tutorial we'll need quite a few variables: colors, bottle sizes, duration of animations and so on. Without a CSS preprocessor and the use of variables, we'd lose a lot of time writing repetitive code. For this reason, tools that speed up your CSS workflow are a great investment.</p>
+
+				<p>Let's get started by defining our variables. Below I have defined the font, size of the elements (such as the vending machine and bottle), and important colors. To help you move faster, we'll define them now and move on. Exactly what each variable does will become clear later on in the tutorial. </p>
+        
+            
+				<div class="code-view">
+					<ul class="code-tabs">
+						<li><a href="#" class="active" data-tab="stylus">STYL</a></li>
+					</ul>
+
+
+					<div class="tab tab-stylus  tab-active">
+						<div class="code-container">
+							<div class="code">
+								<code>
+<pre>/* Variables             :-
+--------------------------- */
+$main-font = 'Gotham', Arial, sans-serif
+$machine-width = 550px
+$machine-height = 750px
+$machine-glassview-height = 120px
+$machine-spacer = 1em
+$bottle-width = 1.65em
+
+body
+  font-family $main-font
+
+/* Colors       :-
+--------------------------- */
+
+// General Colors
+$machine-mc = #F80506
+$machine-tc = #666666
+$machine-ic = #444444
+$machine-lc = #EEEEEE
+$machine-llc = #FFFFFF
+
+// Bottle Colors
+$coke-color = $machine-mc
+$sprite-color = #00B945
+$diet-color = #BCBDC0
+$dasani-color = #5E7ECA
+
+// Glass Colors
+$glass-cc = #BFFFFF
+$glass-bg = #AFAFAF
+$glass-bc = darken($glass-bg, 30%)
+
+/* ... */
+</pre>
+								</code>
+							</div>
+						</div><!-- End Code Container -->
+					</div>
+				</div>
+
+
+				<hr>
+
+
+				<!-- Planning -->
+				<h3>Planning</h3>
+				<p>For an animation of this size and complexity, it's important to split it up into smaller, more manageable parts. This planning phase is key to developing CSS efficiently.</p>
+      			
+      			<p>Let's start by separating our mockup (included in the <a href="http://campusbubble.com/coke/projects/css-tutorial-files.zipdownload">project files</a>) into different parts. Or to be more precise, into following parts:</p>
+
+				<div class="grid-container">
+					<div class="grid-30">
+						<ol>
+							<li>Machine top.</li>
+							<li>Machine frame.</li>
+							<li>Machine view.</li>
+							<li>Machine Pole/Claws.</li>
+							<li>Machine view bottom.</li>
+							<li>Machine Shelves.</li>
+							<li>Machine side.</li>
+							<li>Machine controls.</li>
+							<li>Machine glass view.</li>
+						</ol>
+					</div>
+					<div class="grid-70">
+						<span class="preview-image">
+							<img src="assets/graphics/final-screens/1.jpg" width="100%" alt="">
+						</span>
+					</div>
+				</div>
+
+
+				<!-- Machine Top -->
+				<h5>1. Machine top</h5>
+
+				<p>Let's start by creating the top of the vending machine. We'll do this by using <i>perspective</i> property in CSS.</p>
+
+				<p>When we apply the <i>perspective</i> property to an element, it is rendered using 3D perspective transformations. This technique will give us the ability to achieve the tilted shape needed to create the top of the vending machine. You can read about the <a href="https://css-tricks.com/almanac/properties/p/perspective/" target="_blank">perspective property here</a>
+</p>
+
+				
+        
+				<div class="grid-container">
+					<div class="grid-50">
+						<p>CSS transforms will apply differently to this element because of the perspective property allowing us to easily make the tilted top part of the machine. With some additional spacing and positioning we'll get machine top to match the mockup exactly.</p>
+					</div>
+					<div class="grid-50">
+						<span class="preview-image">
+							<br><br><br>
+							<img src="assets/graphics/final-screens/2.jpg" width="100%" alt="">
+							<p><strong>Machine Top</strong></p>
+						</span>
+					</div>
+				</div>
+
+				<div class="code-view">
+					<ul class="code-tabs">
+						<li><a href="#" class="active" data-tab="css">CSS</a></li>
+						<li><a href="#" data-tab="stylus">STYL</a></li>
+					</ul>
+
+
+					<div class="tab tab-css tab-active">
+						<div class="code-container">
+							<div class="code">
+								<code>
+<pre>.machine-top-perspective {
+  perspective: 600px;
+  position: absolute;
+  width: 100%;
+  top: -86px;
+  left: 0;
+}
+
+.machine-top {
+  background-color: #666;
+  width: 90.3%;
+  margin: 0 auto;
+  height: 125px;
+  transform: rotateX(70deg);
+}</pre>
+								</code>
+							</div>
+						</div><!-- End Code Container -->
+					</div>
+
+					<div class="tab tab-stylus">
+						<div class="code-container">
+							<div class="code">
+								<code>
+<pre>// Machine Top perspective
+.machine-top-perspective
+  perspective 600px
+  position absolute
+  width 100%
+  top -86px
+  left 0
+
+.machine-top
+  background-color $machine-tc
+  width 90.3%
+  margin 0 auto // To center it in the middle
+  height ($machine-height / 6)
+  transform rotateX(70deg)</pre>
+								</code>
+							</div>
+						</div><!-- End Code Container -->
+					</div>
+				</div>
+
+
+
+				<hr>
+				<!-- Machine View -->
+				<h5>2. Machine Frame</h5>
+
+				<p>Now let's build the frame of the vending machine. This will contain the window, bottles, pole, claw and big Coca-Cola logo.</p>
+
+      			<div class="grid-container">
+					<div class="grid-50">
+					<br> <br>
+						<p>Let's set it 100% height so that it inherits the parent height we defined in the variables section. We'll use 19% <i>padding-right</i> because the machine-side (which we'll create later) is also 19% and we are positioning the machine side absolutely within our parent container.</p>
+
+						<div class="notes-container">
+							<p><span class="note-snippet">Note:</span> The height property with <span class="code-snippet">height: 100%</span> only applies if the parent element has a fixed height (like our example) or if all its parent elements have height set to some percentage, including the body tag.</p>
+						</div>
+					</div>
+					<div class="grid-50">
+						<span class="preview-image">
+							<img src="assets/graphics/final-screens/3.jpg" width="100%" alt="">
+							<p>Machine Frame</p>
+						</span>
+					</div>
+				</div>
+					
+				
+        
+				<div class="code-view">
+					<ul class="code-tabs">
+						<li><a href="#" class="active" data-tab="css">CSS</a></li>
+						<li><a href="#" data-tab="stylus">STYL</a></li>
+					</ul>
+
+
+					<div class="tab tab-css tab-active">
+						<div class="code-container">
+							<div class="code">
+								<code>
+<pre>.machine-frame-container {
+  padding-right: 19%;
+  height: 100%;
+}
+
+.machine-frame {
+  width: 100%;
+  height: 100%;
+  padding: 1em;
+}</pre>
+								</code>
+							</div>
+						</div><!-- End Code Container -->
+					</div>
+
+					<div class="tab tab-stylus">
+						<div class="code-container">
+							<div class="code">
+								<code>
+<pre>.machine-frame-container
+  padding-right 19%
+  height 100%
+
+.machine-frame
+  width 100%
+  height 100%
+  padding $machine-spacer</pre>
+								</code>
+							</div>
+						</div><!-- End Code Container -->
+					</div>
+
+
+				<hr>
+
+
+				<!-- Machine View -->
+				<h5>3. Machine View</h5>
+
+				<p>In the previous step, we added <span class="code-snippet">padding: 1em;</span> to <span class="code-snippet">.machine-frame</span>. This bit of code will push our elements inside because we are using the border-sizing property. Next, let's build the machine view which contains the window.</p>
+
+                <div class="grid-container">
+					<div class="grid-50">
+						<br><br>
+						<div class="notes-container">
+						<p><span class="link-snippet">Link:</span>  <a href="http://www.paulirish.com/2012/box-sizing-border-box-ftw/" target="_blank"> More about box sizing</a></p>
+
+						<p><span class="note-snippet">Note:</span> Sometimes when you apply a <span class="code-snippet">border-radius</span> to an element, elements positioned absolutely within it will show outside of the border-radius trimming, and to fix that you need to apply <span class="code-snippet">opacity: .99;</span> to the element that has the <span class="code-snippet">overflow: hidden;</span> property. This issue only occurs in webkit browsers (<a href="http://stackoverflow.com/questions/8705249/css-border-radius-not-trimming-image-on-webkit" target="_blank">read more</a>).</p>
+					</div>
+					</div>
+					<div class="grid-50">
+						<span class="preview-image">
+							<img src="assets/graphics/final-screens/3.jpg" width="100%" alt="">
+							<p><strong>Machine View</strong></p>
+						</span>
+					</div>
+				</div>
+                    
+				<div class="code-view">
+					<ul class="code-tabs">
+						<li><a href="#" class="active" data-tab="css">CSS</a></li>
+						<li><a href="#" data-tab="stylus">STYL</a></li>
+					</ul>
+
+
+					<div class="tab tab-css tab-active">
+						<div class="code-container">
+							<div class="code">
+								<code>
+<pre>.machine-view {
+  background-color: #eee;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  padding: 1em;
+}
+
+.machine-window-container {
+  height: 70%;
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  overflow: hidden;
+  border-radius: 0.5em;
+  position: relative;
+  opacity: 0.99;
+}
+
+.machine-window {
+  background-color: #fff;
+  position: relative;
+  border-radius: 0.5em;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}</pre>
+								</code>
+							</div>
+						</div><!-- End Code Container -->
+					</div>
+
+					<div class="tab tab-stylus">
+						<div class="code-container">
+							<div class="code">
+								<code>
+<pre>.machine-view
+  background-color $machine-lc
+  height 100%
+  width 100%
+  position relative
+  padding $machine-spacer
+
+
+// Machine Window
+.machine-window-container
+  height 70%
+  width 100%
+  max-width 100%
+  min-width 100%
+  overflow hidden
+  border-radius ($machine-spacer * .5)
+  position relative
+  // Hack fix
+  opacity .99
+
+
+.machine-window
+  background-color white
+  position relative
+  border-radius ($machine-spacer * .5)
+  width 100%
+  height 100%
+  overflow hidden
+</pre>
+								</code>
+							</div>
+						</div><!-- End Code Container -->
+					</div>
+
+
+				<hr>
+
+
+				<!-- Machine Pole/Claws -->
+				<h5>4. Machine Pole/Claws</h5>
+
+
+                <p>Next we'll build the vending machine pole and claws. This part is tricky because we want to build it in a way that makes it easy to animate later on. We'll use the <i>translate</i> property to animate the pole and claw. Normally translating something with a percentage value will affect its dimensions, but we'll use <span class="code-snippet">transform: translateX(100%);</span> on an element so the value of the 100% is going to be the width of that element. As a result it will only move on the x-axis in relation to its width. Check out the <a href="#demo">demo</a> to see this in action.</p>
+                    
+                    				
+                    
+             	<div class="grid-container">
+					<div class="grid-50">
+						<div class="notes-container">
+							<p><span class="note-snippet">Note:</span> The reason we want to use percentage based values in our translate property, is to be able to combine it with CSS keyframes, we will talk more about that in our animations section.</p>
+						</div>
+
+						<p>For the pole and claws, we'll use containers so we can move our pole/claws to the right and left using the translate property with a percentage value. Instead of animating the pole itself we'll animate the container which has the full width/or height of the place we want to move the pole within <span class="code-snippet">.machine-view</span>. By animating the pole/claw container, we'll be able to use a percentage value and move our pole and claw based on the <span class="code-snippet">.machine-view</span> width or height.</p>
+					</div>
+					<div class="grid-50">
+						<span class="preview-image">
+							<img src="assets/graphics/final-screens/4.jpg" width="100%" alt="">
+							<p><strong>Machine Pole</strong></p>
+						</span>
+					</div>
+				</div>
+                    
+				<div class="grid-container">
+					<div class="grid-50">
+						<br><br><br>
+						<h5>4.1. Claws</h5>
+						<p>Next we'll build the claws with the same movement technique discussed above. Based on the y-axis, let's use the same trick of moving a parent container of the claws using a percentage value.</p>
+					</div>
+					<div class="grid-50">
+						<span class="preview-image">
+							<img src="assets/graphics/final-screens/5.jpg" width="100%" alt="">
+							<p><strong>Machine Claws</strong></p>
+						</span>
+					</div>
+				</div>
+                    
+                    
+				<h6>Styles for both Pole & Claw:</h6>
+				<div class="code-view">
+					<ul class="code-tabs">
+						<li><a href="#" class="active" data-tab="css">CSS</a></li>
+						<li><a href="#" data-tab="stylus">STYL</a></li>
+					</ul>
+
+
+					<div class="tab tab-css tab-active">
+						<div class="code-container">
+							<div class="code">
+								<code>
+<pre>.machine-pole-wrapper {
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
+.machine-pole-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.machine-pole {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: all 1s;
+  transform: translateX(-3%);
+}
+
+.pole {
+  position: absolute;
+  width: 0.75em;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: #666;
+  transition: all 1s;
+  box-shadow: 4px 3px 8px rgba(0,0,0,0.45);
+}
+
+.machine-claw-wrapper {
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
+.machine-claw-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: all 1s ease;
+  transform: translateY(10%);
+}
+
+.claw-bottles {
+  width: 1.65em;
+  height: 77px;
+  display: inline-block;
+  position: absolute;
+  left: 25px;
+  opacity: 1;
+  top: -26px;
+  z-index: 4;
+}
+
+.claw-bottles img {
+  opacity: 0;
+  width: 100%;
+  position: absolute;
+  display: inline-block;
+}
+
+.machine-claw {
+  width: 3.25em;
+  height: 3.25em;
+  padding: 0.35em;
+  background-color: #f80506;
+  position: absolute;
+  border-bottom: 0.25em solid #666;
+  left: 0.75em;
+  top: 0;
+  z-index: 6;
+}
+
+.machine-claw >img {
+  display: inline-block;
+  margin-top: 16%;
+  width: 100%;
+}
+
+.machine-claw:after {
+  content: '';
+  color: #000;
+  position: absolute;
+  right: 0;
+  top: -12px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 12px 0 0 12px;
+  border-color: transparent transparent transparent #c60405;
+}
+
+.machine-claw:before {
+  content: '';
+  color: #000;
+  position: absolute;
+  left: 0;
+  top: -12px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 12px 12px 0 0;
+  border-color: transparent #c60405 transparent transparent;
+}</pre>
+								</code>
+							</div>
+						</div><!-- End Code Container -->
+					</div>
+
+					<div class="tab tab-stylus">
+						<div class="code-container">
+							<div class="code">
+								<code>
+<pre>// Machine Pole
+.machine-pole-wrapper
+  z-index 100
+  width 100%
+  height 100%
+  top 0
+  left 0
+  position absolute
+
+.machine-pole-container
+  position relative
+  width 100%
+  height 100%
+
+// To move the pole
+.machine-pole
+  position absolute
+  width 100%
+  height 100%
+  transition: all 1s
+  // Normal State
+  transform translateX(-3%)
+
+.pole
+  position absolute
+  width ($machine-spacer * .75)
+  left 0
+  top 0
+  height 100%
+  background-color $machine-tc
+  transition: all 1s
+  box-shadow 4px 3px 8px rgba(0,0,0, .45)
+
+.machine-claw-wrapper
+  z-index 100
+  width 100%
+  height 100%
+  top 0
+  left 0
+  position absolute
+
+// To move the claw
+.machine-claw-container
+  position relative
+  width 100%
+  height 100%
+  transition all 1s ease
+  // Normal State
+  transform translateY(10%)
+
+.claw-bottles
+  width $bottle-width
+  height 77px
+  display inline-block
+  position absolute
+  left 25px
+  opacity 1
+  top -26px
+  z-index $index-1
+  // Reset
+  // Fix Me
+  img
+    opacity 0
+    width 100%
+    position absolute
+    display inline-block
+
+.machine-claw
+  width $machine-spacer * 3.25
+  height @width
+  padding $machine-spacer * .35
+  background-color $machine-mc
+  position absolute
+  border-bottom ($machine-spacer * .25) solid $machine-tc
+  left ($machine-spacer * .75)
+  top 0
+  z-index $index-2
+  >img
+    display inline-block
+    margin-top 16%
+    width 100%
+  // Right Claw
+  &:after
+    content ''
+    color black
+    position absolute
+    right 0
+    top -12px
+    width: 0
+    height: 0
+    border-style: solid
+    border-width: 12px 0 0 12px
+    border-color: transparent transparent transparent darken($machine-mc, 20%)
+  // Left Claw
+  &:before
+    content ''
+    color black
+    position absolute
+    left 0
+    top -12px
+    width: 0
+    height: 0
+    border-style: solid
+    border-width: 12px 12px 0 0
+    border-color: transparent darken($machine-mc, 20%) transparent transparent</pre>
+								</code>
+							</div>
+						</div><!-- End Code Container -->
+					</div>
+				</div>
+				<!-- End Machine Pole/Claws -->
+
+
+				<hr>
+
+
+				<!-- Machine Bottom -->
+				<h5>5. Machine bottom</h5>
+				<p>Next, we'll build the bottom of the vending machine. Let's position our <span class="code-snippet">.machine-bottom</span> absolutely at the bottom of our <span class="code-snippet">.machine-view</span> thereby placing it at the bottom of our view just like the mockup.</p>
+                    
+                <div class="grid-container">
+					<div class="grid-50">
+						<p>Now let's create the bottom Coca-Cola logo by using a an image and a div. We'll start by positioning our image absolutely within our div and give it a width of 135%. Let's also visually center it in the middle by giving it a negative left value <span class="code-snippet">left: -18%;</span> while applying the <span class="code-snippet">overflow: hidden;</span> to our parent div, hiding all the overlapping edges of the logo.</p>
+					</div>
+					<div class="grid-50">
+						<span class="preview-image">
+							<img src="assets/graphics/final-screens/6.jpg" width="100%" alt="">
+							<p><strong>Machine Bottom</strong></p>
+						</span>
+					</div>
+				</div>
+                    
+				<div class="code-view">
+					<ul class="code-tabs">
+						<li><a href="#" class="active" data-tab="css">CSS</a></li>
+						<li><a href="#" data-tab="stylus">STYL</a></li>
+					</ul>
+
+					<div class="tab tab-css tab-active">
+						<div class="code-container">
+							<div class="code">
+								<code>
+<pre>.machine-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 25%;
+  overflow: hidden;
+}
+
+.machine-bottom img {
+  position: absolute;
+  left: -18%;
+  bottom: -5%;
+  display: inline-block;
+  width: 135%;
+}</pre>
+								</code>
+							</div>
+						</div><!-- End Code Container -->
+					</div>
+
+					<div class="tab tab-stylus">
+						<div class="code-container">
+							<div class="code">
+								<code>
+<pre>.machine-bottom
+  position absolute
+  bottom 0
+  left 0
+  width 100%
+  max-width 100%
+  height 25%
+  overflow hidden
+  img
+    position absolute
+    left -18%
+    bottom -5%
+    display inline-block
+    width 135%</pre>
+								</code>
+							</div>
+						</div><!-- End Code Container -->
+					</div>
+
+
+				<hr>
+
+
+				<!-- Machine Shelves -->
+				<h5>6. Machine Shelves:</h5>
+
+				<p>Next we'll create the machine shelves. This particular shape is a bit complex so we'll have to use some CSS tricks. We'll mainly rely on pseudo elements to create this shape.</p>
+
+				<p>Again, we'll have to approach this by separating the shapes into various components:</p>
+
+				<ol>
+					<li>Shelf Container</li>
+					<li>Machine Shelf</li>
+					<li>Shelf Block</li>
+					<li>Shelf Seprators</li>
+					<li>Cylinder Shape</li>
+					<li>Shelf Hack</li>
+				</ol>
+
+				<!-- Shelf Container -->
+				<h5>6.1. Shelf Container:</h5>
+				<p>With <span class="code-snippet">.machine-window-row</span> as our horizontal grid spacer, let's apply a height of 24% and margin-bottom of 1.5% to match our mockup.</p>
+    
+                <div class="grid-container">
+					<div class="grid-50">
+						<p>Our shelf container is comprised of three pieces. The <span class="code-snippet">.machine-shelf-container</span> is the general container within which we'll position <span class="code-snippet">.machine-window-row</span> and <span class="code-snippet">.machine-shelf</span></p>
+					</div>
+					<div class="grid-50">
+						<span class="preview-image">
+							<img src="assets/graphics/final-screens/7.1.jpg" width="100%" alt="">
+							<p><strong>Shelf Container</strong></p>
+						</span>
+					</div>
+				</div>
+
+
+				<div class="code-view">
+					<ul class="code-tabs">
+						<li><a href="#" class="active" data-tab="css">CSS</a></li>
+						<li><a href="#" data-tab="stylus">STYL</a></li>
+					</ul>
+
+
+					<div class="tab tab-css tab-active">
+						<div class="code-container">
+							<div class="code">
+								<code>
+<pre>.machine-window-row {
+  height: 24%;
+  margin-bottom: 1.5%;
+}
+
+.machine-shelf-container {
+  height: 100%;
+  position: relative;
+}</pre>
+								</code>
+							</div>
+						</div><!-- End Code Container -->
+					</div>
+
+					<div class="tab tab-stylus">
+						<div class="code-container">
+							<div class="code">
+								<code>
+<pre>// Machine Window Row
+.machine-window-row
+  height 24%
+  margin-bottom 1.5%
+
+.machine-shelf-container
+	height 100%
+	position relative</pre>
+								</code>
+							</div>
+						</div><!-- End Code Container -->
+					</div>
+				</div>
+				<!-- End Shelf Container-->
+
+
+<hr>
+
+
+				<!-- Machine Shelf -->
+                <div class="grid-container">
+					<div class="grid-50">
+						<h5>6.2. Machine Shelf:</h5>
+
+						<p>By giving our <span class="code-snippet">.machine-shelf</span> 70% height, it will take 70% of the height of its container (in this case <span class="code-snippet">.machine-window-row</span>) which has 24% height.</p>
+					</div>
+					<div class="grid-50">
+						<span class="preview-image">
+							<img src="assets/graphics/final-screens/7.2.jpg" width="100%" alt="">
+							<p><strong>Machine Shelf</strong></p>
+						</span>
+					</div>
+				</div>   
+                    
+                    
+                <div class="code-view">
+					<ul class="code-tabs">
+						<li><a href="#" class="active" data-tab="css">CSS</a></li>
+						<li><a href="#" data-tab="stylus">STYL</a></li>
+					</ul>
+
+
+					<div class="tab tab-css tab-active">
+						<div class="code-container">
+							<div class="code">
+								<code>
+<pre>.machine-shelf {
+  width: 100%;
+  height: 70%;
+  position: absolute;
+  bottom: 9px;
+}</pre>
+								</code>
+							</div>
+						</div><!-- End Code Container -->
+					</div>
+
+					<div class="tab tab-stylus">
+						<div class="code-container">
+							<div class="code">
+								<code>
+<pre>.machine-shelf
+	width 100%
+	height 70%
+	position absolute
+	bottom 9px</pre>
+								</code>
+							</div>
+						</div><!-- End Code Container -->
+					</div>
+				</div>
+				<!-- End Machine Shelf -->
+
+
+<hr>				
+
+				<!-- Shelf Block -->
+				<h5>6.3. Shelf Block:</h5>
+
+				<p>The shelf block is basically a grid spacer with a width of <span class="code-snippet">16.66%</span>. Since there are 6 columns in the vending machine we get that figure by doing 100% / 6 = 16.66%. </p>
+
+				<div class="code-view">
+					<ul class="code-tabs">
+						<li><a href="#" class="active" data-tab="css">CSS</a></li>
+						<li><a href="#" data-tab="stylus">STYL</a></li>
+					</ul>
+
+
+					<div class="tab tab-css tab-active">
+						<div class="code-container">
+							<div class="code">
+								<code>
+<pre>.shelf-block {
+  height: 100%;
+  width: 16.6666666%;
+  display: inline-block;
+  float: left;
+  position: relative;
+}</pre>
+								</code>
+							</div>
+						</div><!-- End Code Container -->
+					</div>
+
+					<div class="tab tab-stylus">
+						<div class="code-container">
+							<div class="code">
+								<code>
+<pre>.shelf-block
+	height 100%
+	width 16.6666666%
+	display inline-block
+	float left
+	position relative</pre>
+								</code>
+							</div>
+						</div><!-- End Code Container -->
+					</div>
+				</div>
+				<!-- End Shelf Block -->
+
+
+<hr>
+
+
+				<!-- Shelf Separators -->
+                <div class="grid-container">
+					<div class="grid-60">
+						<h5>6.4. Shelf Separators:</h5>
+
+						<p>Next, let's build the shelf separator. To create this shape with CSS, we'll use the pseudo element <span class="code-snippet">&:before</span>. Let's give it a fixed width and height and position it exactly in the middle between each <span class="code-snippet">.shelf-block</span> so when it's covered with <span class="code-snippet">Cylinder Shape</span>, it will match the mockup.</p>
+					</div>
+					<div class="grid-40">
+						<span class="preview-image">
+							<br><br>
+							<img src="assets/graphics/final-screens/7.3.jpg" width="100%" alt="">
+							<p><strong>Shelf Seprators</strong></p>
+						</span>
+					</div>
+				</div>
+
+				<div class="code-view">
+					<ul class="code-tabs">
+						<li><a href="#" class="active" data-tab="css">CSS</a></li>
+						<li><a href="#" data-tab="stylus">STYL</a></li>
+					</ul>
+
+
+					<div class="tab tab-css tab-active">
+						<div class="code-container">
+							<div class="code">
+								<code>
+<pre>.shelf-block:before {
+  content: '';
+  border-radius: 1em;
+  height: 80%;
+  width: 8px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin-left: -4px;
+  display: inline-block;
+  background-color: #eee;
+}</pre>
+								</code>
+							</div>
+						</div><!-- End Code Container -->
+					</div>
+
+					<div class="tab tab-stylus">
+						<div class="code-container">
+							<div class="code">
+								<code>
+<pre>
+.shelf-block
+  &:before
+    content ''
+    border-radius 1em
+    height 80%
+    width 8px
+    position absolute
+    left 0
+    bottom 0
+    margin-left -4px
+    display inline-block
+    background-color $machine-lc</pre>
+								</code>
+							</div>
+						</div><!-- End Code Container -->
+					</div>
+				</div>
+				<!-- End Shelf Separators -->
+
+
+<hr>
+
+
+
+				<!-- Cylinder Shape -->                    
+                <div class="grid-container">
+					<div class="grid-60">
+						<h5>6.5. Cylinder Shape:</h5>
+
+						<p>Now let's build the cylinder. Again, to create this shape through CSS we'll use pseudo element <span class="code-snippet">&:after</span>, positioning it to be exactly in the center of our <span class="code-snippet">.shelf-block</span> and giving it height to match the mockup's background. Of course we'll be creating this for six different <span class="code-snippet">.shelf-block</span>. Since we are making them take the full width of our row with the same background these elements combine into one, unified shape.</p>
+					</div>
+					<div class="grid-40">
+						<span class="preview-image">
+							<br><br><br>
+							<img src="assets/graphics/final-screens/7.5.jpg" width="180px" alt="">
+							<p><strong>Cylinder Shape</strong></p>
+						</span>
+					</div>
+				</div>    
+
+				<div class="code-view">
+					<ul class="code-tabs">
+						<li><a href="#" class="active" data-tab="css">CSS</a></li>
+						<li><a href="#" data-tab="stylus">STYL</a></li>
+					</ul>
+
+
+					<div class="tab tab-css tab-active">
+						<div class="code-container">
+							<div class="code">
+								<code>
+<pre>.shelf-block:after {
+  content: '';
+  width: 87.5%;
+  height: 65%;
+  background-color: #b7b7b7;
+  display: inline-block;
+  position: absolute;
+  bottom: -2px;
+  left: 4px;
+  z-index: 4;
+  border-radius: 0 0 1.45em 1.45em;
+}</pre>
+								</code>
+							</div>
+						</div><!-- End Code Container -->
+					</div>
+
+					<div class="tab tab-stylus">
+						<div class="code-container">
+							<div class="code">
+								<code>
+<pre>.shelf-block
+  height 100%
+  width 16.6666666%
+  display inline-block
+  float left
+  position relative
+  &:after
+    content ''
+    width 87.5%
+    height 65%
+    background-color #B7B7B7
+    display inline-block
+    position absolute
+    bottom -2px
+    left 4px
+    z-index $index-1
+    border-radius 0 0 1.45em 1.45em</pre>
+							</code>
+						</div>
+					</div><!-- End Code Container -->
+				</div>
+			</div>
+			<!-- End Cylinder Shape -->
+
+
+<hr>
+
+
+			<!-- Shelf Hack -->
+        	<div class="grid-container">
+				<div class="grid-60">
+					<h5>6.6 Shelf Hack:</h5>
+
+					<p>To create the ends of the shelf (see mockup below), we'll write a little CSS hack to achieve the slanted triangle shape. This little visual hack gives the illusion of depth. Again, we'll use pseudo elements and add <span class="code-snippet">span.shelf-hack</span> to the first and last sections of each shelf row. This allows us achieve the tilted view of the shelf background that gives each bottle row the depth it has in the mockups.</p>
+
+					<p>Importantly, we did not use the <span class="code-snippet">&:before</span> pseudo element because it would cause property conflicts with the shelf separators we built earlier.</p>
+				</div>
+				<div class="grid-40">
+					<span class="preview-image">
+						<br><br> <br><br><br>
+						<img src="assets/graphics/final-screens/7.6.jpg" width="100%" alt="">
+						<p><strong>Shelf Hack</strong></p>
+					</span>
+				</div>
+			</div>          
+
+			<div class="code-view">
+				<ul class="code-tabs">
+					<li><a href="#" class="active" data-tab="css">CSS</a></li>
+					<li><a href="#" data-tab="stylus">STYL</a></li>
+				</ul>
+
+
+				<div class="tab tab-css tab-active">
+					<div class="code-container">
+						<div class="code">
+							<code>
+<pre>/* General Properties together */
+.shelf-hack {
+  display: inline-block;
+  height: 100%;
+  border-radius: 0;
+  position: absolute;
+  width: 0;
+  bottom: 0;
+  height: 0;
+  border-style: solid;
+  background-color: transparent;
+  margin-left: 0;
+  z-index: 6;
+}</pre>
+									</code>
+								</div>
+							</div><!-- End Code Container -->
+						</div>
+
+						<div class="tab tab-stylus">
+							<div class="code-container">
+								<div class="code">
+									<code>
+<pre>.shelf-hack
+  display inline-block
+  height 100%
+  border-radius 0
+  position absolute
+  width 0
+  bottom 0
+  height 0
+  border-style solid
+  background-color transparent
+  margin-left 0
+  z-index $index-2</pre>
+									</code>
+								</div>
+							</div><!-- End Code Container -->
+						</div>
+					</div>
+
+					<p>To control our <span class="code-snippet">span.shelf-hack</span> we'll select them through their parent container <span class="code-snippet">.shelf-block</span>. Next, let's select the shelf-block using <span class="code-snippet">.machine-shelf</span>. This way we can select just the first and the last <span class="code-snippet">.shelf-block</span> allowing us to select <span class="code-snippet">span.shelf-hack</span> from each row.</p>
+
+					<div class="code-view">
+						<ul class="code-tabs">
+							<li><a href="#" class="active" data-tab="css">CSS</a></li>
+							<li><a href="#" data-tab="stylus">STYL</a></li>
+						</ul>
+
+
+						<div class="tab tab-css tab-active">
+							<div class="code-container">
+								<div class="code">
+									<code>
+<pre>.machine-shelf .shelf-block:first-child .shelf-hack {
+  left: 0;
+  border-width: 70px 55px 0 0;
+  border-color: #fff transparent transparent transparent;
+}
+
+.machine-shelf .shelf-block:first-child:after {
+  border-radius: 0 0 1.45em 0;
+  left: 0;
+  width: 94%;
+}
+
+.machine-shelf .shelf-block:last-child:after {
+  border-radius: 0 0 0 1.45em;
+  left: auto;
+  right: -1px;
+  width: 94.5%;
+}
+
+.machine-shelf .shelf-block:last-child .shelf-hack {
+  right: -1px;
+  border-width: 0 55px 70px 0;
+  border-color: transparent #fff transparent transparent;
+}</pre>
+									</code>
+								</div>
+							</div><!-- End Code Container -->
+						</div>
+
+						<div class="tab tab-stylus">
+							<div class="code-container">
+								<div class="code">
+									<code>
+<pre>.machine-shelf
+  .shelf-block
+    &:first-child
+      // Gives the illusion of the shelf sides
+      // In reality this is just a CSS triangle that has the same color as the parent background.
+      .shelf-hack
+        left 0
+        border-width 70px 55px 0 0
+        border-color white transparent transparent transparent
+      &:after
+        border-radius 0 0 1.45em 0
+        left 0
+        width 94%
+
+    &:last-child
+      &:after
+        border-radius 0 0 0 1.45em
+        left auto
+        right -1px
+        width 94.5%
+      .shelf-hack
+        right -1px
+        border-width  0 55px 70px 0
+        border-color transparent white transparent transparent</pre>
+									</code>
+								</div>
+							</div><!-- End Code Container -->
+						</div>
+					</div>
+
+<hr>
+
+	
+	<!-- Machine Side -->
+    <div class="grid-container">
+		<div class="grid-60">
+			<h5>7. Machine side</h5>
+
+			<p>Now we'll create the machine side that contains the buttons and glass dispenser.</p>
+
+			<div class="notes-container">
+				<p><span class="note-snippet">Note:</span> We'll be using a Nib gradient mixin to make our side background color. We'll also give it a 19% width based on the space left after building our view.</p>
+
+			</div>
+		</div>
+		<div class="grid-40">
+			<span class="preview-image">
+				<br><br>
+				<img src="assets/graphics/final-screens/8.1.jpg" width="100%" alt="">
+				<p><strong>Machine side</strong></p>
+			</span>
+		</div>
+	</div>                  
+
+	<div class="code-view">
+		<ul class="code-tabs">
+			<li><a href="#" class="active" data-tab="css">CSS</a></li>
+			<li><a href="#" data-tab="stylus">STYL</a></li>
+		</ul>
+
+
+		<div class="tab tab-css tab-active">
+			<div class="code-container">
+				<div class="code">
+					<code>
+<pre>.machine-side {
+  background: linear-gradient(to left, #f80506, #ba0405);
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 19%;
+  height: 100%;
+  padding: 0.75em;
+  text-align: center;
+}
+
+.machine-side-top {
+  width: 100%;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+}
+
+.machine-side-top img {
+  max-width: 45%;
+  display: inline-block;
+}
+
+.machine-side-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  padding-top: 1.5em;
+  padding-bottom: 2.5em;
+}
+
+.machine-side-bottom img {
+  display: inline-block;
+  max-width: 40%;
+}</pre>
+					</code>
+				</div>
+			</div><!-- End Code Container -->
+		</div>
+
+		<div class="tab tab-stylus">
+			<div class="code-container">
+				<div class="code">
+					<code>
+<pre>// Machine Side
+.machine-side
+  background linear-gradient(right, $machine-mc, darken($machine-mc, 25%))
+  position absolute
+  top 0
+  right 0
+  width 19%
+  height 100%
+  padding ($machine-spacer * .75)
+  text-align center
+
+// Machine Top Container
+.machine-side-top
+  width 100%
+  padding-top ($machine-spacer * 1.5)
+  padding-bottom ($machine-spacer * 1.5)
+  img
+    max-width 45%
+    display inline-block
+
+// Machine Bottom Container
+.machine-side-bottom
+  position absolute
+  bottom 0
+  width 100%
+  left 0
+  padding-top ($machine-spacer * 1.5)
+  padding-bottom ($machine-spacer * 2.5)
+  img
+    display inline-block
+    max-width 40%</pre>
+					</code>
+				</div>
+			</div><!-- End Code Container -->
+		</div>
+	</div>
+
+<hr>
+
+
+	<!-- Machine Controls -->
+    <div class="grid-container">
+		<div class="grid-60">
+			<h5>8. Machine Controls</h5>
+
+			<p>Now we'll build the buttons using CSS, a mixture between border-radius, and a different background/border color for each bottle.</p>
+
+			<p><span class="note-snippet">Note:</span> Here we'll use stylus functions and mixins to achieve the CSS result below, making it easier to change and adapt in the future.</p>
+		</div>
+		<div class="grid-40">
+			<span class="preview-image">
+				<br><br>
+				<img src="assets/graphics/final-screens/8.2.jpg" style="width: 100px; margin:0 auto;" alt="">
+				<p><strong>Machine Controls</strong></p>
+			</span>
+		</div>
+	</div>                
+
+	<div class="code-view">
+		<ul class="code-tabs">
+			<li><a href="#" class="active" data-tab="css">CSS</a></li>
+			<li><a href="#" data-tab="stylus">STYL</a></li>
+		</ul>
+
+
+		<div class="tab tab-css tab-active">
+			<div class="code-container">
+				<div class="code">
+					<code>
+<pre>[class^="activator-"],
+[class*=" activator-"] {
+  display: inline-block;
+  width: 100%;
+  border-radius: 0.3em;
+  padding: 0.25em;
+  margin-bottom: 0.35em;
+  border-bottom: 0.2em solid transparent;
+}
+
+[class^="activator-"] img,
+[class*=" activator-"] img {
+  vertical-align: top;
+  display: inline-block;
+  width: 70%;
+}
+
+.activator-coke {
+  background-color: #f80506;
+  border-bottom-color: #df0505;
+}
+
+/* And different colors for each button type */</pre>
+					</code>
+				</div>
+			</div><!-- End Code Container -->
+		</div>
+
+		<div class="tab tab-stylus">
+			<div class="code-container">
+				<div class="code">
+					<code>
+<pre>// Our Button Mixin Using Stylus
+// Mixin for cleaner and reusable code.
+// For coloring the buttons and their shadows and hover states.
+$button-mixin(n)
+  background-color n
+  border-bottom-color darken(n, 10%)
+
+// General Button Rules
+[class^="activator-"], [class*=" activator-"]
+  display inline-block
+  width 100%
+  border-radius ($machine-spacer * .3)
+  padding ($machine-spacer * .25)
+  margin-bottom .35em
+  border-bottom .2em solid transparent
+  img
+    vertical-align top
+    display inline-block
+    width 70%
+
+.activator-coke
+  $button-mixin($coke-color)
+.activator-sprite
+  $button-mixin($sprite-color)
+.activator-diet
+  $button-mixin($diet-color)
+.activator-dasani
+  $button-mixin($dasani-color)</pre>
+					</code>
+				</div>
+			</div><!-- End Code Container -->
+		</div>
+	</div>
+
+<hr>
+
+	<h4>9. Machine glass view</h4>
+	<p>Next we'll create the machine glass view where the bottle are dispensed. To approach this, we'll have to separate this element into different components:</p>
+
+	<ol>
+		<li>Glass Container.</li>
+		<li>Recreating depth of the inner part in CSS.</li>
+		<li>Glass cover.</li>
+	</ol>
+                    
+	<h6>9.1. Glass Container:</h6>
+
+	<p>The first step is creating the container <span class="code-snippet">.machine-glassview</span>. Here, we'll apply the fixed height values from the variables we made in the beginning of our tutorial.</p>
+                    
+    We'll use <p><span class="code-snippet">.machine-glassview</span> to hide the sliding glass door when it's being opened. We'll also use this container to hide the four different bottles that appear when they are chosen after the pole and claw animation. By using the <span class="code-snippet">overflow: hidden;</span> we can position elements inside of the container and out of view for the user.</p>
+
+	<div class="grid-container">
+		<div class="grid-50">
+			<h6>9.2. Container depth:</h6>
+
+			<p>For top part of this shape, let's use a simple CSS box with a <span class="code-snippet">1px border</span> and with position it so we create the illusion of depth like in the mockup, <strong>Check figure - 2</strong></p>
+
+			<p>Now for the bottom part of the container, we'll use the same perspective method we used for <span class="code-snippet">.machine-top</span>, <strong>Check figure - 3</strong></p>
+		</div>
+		<div class="grid-50">
+			<span class="preview-image">
+				<img src="assets/graphics/final-screens/8.3.jpg" width="100%" alt="">
+				<p><strong>Machine Depth</strong></p>
+			</span>
+		</div>
+	</div>
+
+
+<hr>	
+
+
+    <div class="grid-container">
+		<div class="grid-70">
+			<h6>9.3. Glass Cover:</h6>
+
+			<p>For the last part of our machine glass view, let's create the glass cover. The first step is making it take the full width and height of our <span class="code-snippet">.machine-glassview</span>. Next, let's add a nib <span class="code-snippet">linear-gradient</span> to make the CSS linear gradient using the variables we made in the beginning of the tutorial. By adding an opacity to the glass cover, we can slide the bottles under it to make achieve the illusion of depth and match the mockup.</p>
+
+			<p>By increasing the <span class="code-snippet">z-index: value;</span> of our glass cover we made sure it always shows above the bottles and creates the effect of opening while the bottle is still inside the container.</p>
+		</div>
+		<div class="grid-30">
+			<span class="preview-image">
+				<img src="assets/graphics/final-screens/8.4.jpg" style="width: 140px; margin: 0 auto;" alt="">
+				<p><strong>Glass Cover</strong></p>
+			</span>
+		</div>
+	</div> 
+
+	<div class="code-view">
+		<ul class="code-tabs">
+			<li><a href="#" class="active" data-tab="css">CSS</a></li>
+			<li><a href="#" data-tab="stylus">STYL</a></li>
+		</ul>
+
+
+		<div class="tab tab-css tab-active">
+			<div class="code-container">
+				<div class="code">
+					<code>
+<pre>/* Glass View            :-
+--------------------------- */
+.machine-glassview {
+  margin-top: 0.5em;
+  height: 120px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.glass-container-holder {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.depth-container {
+  background-color: #afafaf;
+  width: 100%;
+  height: 100%;
+  perspective: 45px;
+  overflow: hidden;
+}
+
+.top-depth {
+  height: 84%;
+  width: 70%;
+  background-color: transparent;
+  border: 1px solid #7b7b7b;
+  border-top: transparent;
+  border-bottom: transparent;
+  margin: 0 auto;
+}
+
+.bottom-depth {
+  width: 100%;
+  margin: 0 auto;
+  background-color: transparent;
+  height: 38px;
+  transform: rotateX(83deg);
+  border: 1px solid #7b7b7b;
+}
+
+.glass-cover {
+  opacity: 0.65;
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to bottom, #bfffff, #fff);
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+  transform: translateY(0%);
+}</pre>
+					</code>
+				</div>
+			</div><!-- End Code Container -->
+		</div>
+
+		<div class="tab tab-stylus">
+			<div class="code-container">
+				<div class="code">
+					<code>
+<pre>/* Glass View            :-
+--------------------------- */
+.machine-glassview
+  margin-top $machine-spacer * .5
+  height $machine-glassview-height
+  width 100%
+  overflow hidden
+  position relative
+
+.glass-container-holder
+  height 100%
+  position absolute
+  width 100%
+  top 0
+  left 0
+
+// Top Depth
+.top-depth
+  height 84%
+  width 70%
+  background-color transparent
+  border 1px solid $glass-bc
+  border-top transparent
+  border-bottom transparent
+
+  margin 0 auto
+
+// Bottom Depth
+.bottom-depth
+  width 100%
+  margin 0 auto
+  background-color transparent
+  height 38px
+  transform rotateX(83deg)
+  border 1px solid $glass-bc
+
+// Glass Cover
+.glass-cover
+  opacity .65
+  position absolute
+  z-index $index-4
+  top 0
+  left 0
+  background linear-gradient(top, $glass-cc, white)
+  width 100%
+  height 100%
+  transition all .3s ease
+  transform translateY(0%)
+</pre>
+					</code>
+				</div>
+			</div><!-- End Code Container -->
+		</div>
+	</div>
+
+<hr>
+
+
+	<h2><a href="#animation" id="animation" class="main-anchor">Animations:</a></h2>
+
+	<h4>Animation strategy/hacks:</h4>
+
+	<p>As you have seen in the previous sections, we have to use some visual tricks to create the illusion of a functioning vending machine. This is doubly the case when creating the animations.</p>  
+    
+    <h5>Bottles moving from shelf to glass view:</h5>                
+                    
+    <p>To achieve our bottle moving effect from the shelf to our glass view, we have a bottle of each type inserted in more than one location. One of those locations is the claw. In our keyframes animation we'll only show the bottle we've hidden in the claw once it's time for the claw to grab the bottle. Once the claw starts moving with the bottle, we hide the bottle on the shelf and show the bottle in the claws until it is hidden under the <span class="code-snippet">.machine-side</span>. Next, we make the bottle disappear again so on its way back, the claws are empty.</p>
+
+
+	<h5>Bottle dropping into the glass view:</h5>
+	<p>Again, we'll use the same method to create the illusion of a bottle dropping into the glass container. A bottle of each type is hidden in the glass container until after the bottle has been picked up from the shelf and moved into the container.</p>
+
+
+	<h5>Replacing the bottle on the shelf:</h5>
+
+
+	<p>After a user selects a bottle, we want to replace it on the shelf with a new bottle. To do that we'll make three bottles instead of two in each <span class="code-snippet">.shelf-block</span>. By default we will hide the bottle in the middle and we will position it exactly on top of the bottle on the back. This way, we have two bottles on top of each other and one in front, thus achieving the same look that other <span class="code-snippet">.shelf-block</span> have and creating the illusion of a replaced bottle. </p>
+
+
+<hr>
+
+
+	<h4>Keyframes Animation:</h4>
+
+	<p>Now, for the fun part: creating the keyframe animations. It's extremely important that we time our animations to start and end in unison. We'll create a total of ten steps by creating a keyframe at every 10% mark <span class="code-snippet">10 / 5 = 0.5</span>. This is the duration of each step based on the total time of the animation. We will use the following template to make all our keyframes:</p>
+
+
+
+	<div class="notes-container">
+		<p><span class="note-snippet">Note:</span> We are using a variable in our stylus section so we can maintain the same duration everywhere in our CSS. The same is true for <span class="code-snippet">animation-duration</span> in all keyframes related to moving the bottle.</p>
+	</div>
+
+	<div class="code-view">
+		<ul class="code-tabs">
+			<li><a href="#" class="active" data-tab="css">CSS</a></li>
+			<li><a href="#" data-tab="stylus">STYL</a></li>
+		</ul>
+
+
+		<div class="tab tab-css tab-active">
+			<div class="code-container">
+				<div class="code">
+					<code>
+<pre>@keyframes animationName {
+  0% { .. }
+  10% { .. }
+  20% { .. }
+  30% { .. }
+  40% { .. }
+  50% { .. }
+  60% { .. }
+  70% { .. }
+  80% { .. }
+  90% { .. }
+  100% { .. }
+}</pre>
+					</code>
+				</div>
+			</div><!-- End Code Container -->
+		</div>
+
+		<div class="tab tab-stylus">
+			<div class="code-container">
+				<div class="code">
+					<code>
+<pre>// So we can time everything together we will set all animation duration to a fixed number
+// and all keyframes will need to follow the same concept, a step every 10%,
+// this way we can control all the animations separately with the same timing.
+$anim-dur = 5s
+
+@keyframes animationName
+  0%
+    ...
+  10%
+    ...
+  20%
+    ...
+  30%
+    ...
+  40%
+    ...
+  50%
+    ...
+  60%
+    ...
+  70%
+    ...
+  80%
+    ...
+  90%
+    ...
+  100%
+    ...</pre>
+					</code>
+				</div>
+			</div><!-- End Code Container -->
+		</div>
+	</div>
+
+                    <p>Next, we will create a keyframes animation for the following parts:</p>
+
+	<ol>
+		<li>Moving the pole to the location of <span class="code-snippet">.shelf-block</span> with the three bottles.</li>
+		<li>Moving the claw up/down to the location of <span class="code-snippet">.shelf-block</span> with the bottle you want to grab.</li>
+		<li>Showing the bottle in the claw.</li>
+        <li>Switching the three bottles to achieve the refilling of the bottles shelves.</li>
+        <li>Dropping the bottle into the glass view.</li>
+	</ol>
+
+
+	<p>As I mentioned earlier, that we need to make all our keyframes the same steps and timing. This makes the animation far easier to change. For example, if we add a transform property on the 30% step and all our animations have the same animation-duration then all the things we called using the transform property will be animating at the same time, allowing us to simply combine all animations.</p>
+
+
+	<h6>Quick example (for the rest of the keyframes see the <a href="http://campusbubble.com/coke/projects/css-tutorial-files.zip" target="_blank">project files</a>):</h6>
+
+	<p>In this example we'll see how we connect all the keyframes animations together.</p>
+
+
+	<div class="code-view">
+		<ul class="code-tabs">
+			<li><a href="#" class="active" data-tab="css">CSS</a></li>
+			<li><a href="#" data-tab="stylus">STYL</a></li>
+		</ul>
+
+
+		<div class="tab tab-css tab-active">
+			<div class="code-container">
+				<div class="code">
+					<code>
+<pre>/* Moving Pole to location on the shelf. */
+@keyframes poleToCoke {
+  0% { transform: translateX(-3%); }
+  10% { transform: translateX(10%); }
+  20% { transform: translateX(14%); }
+  30% { transform: translateX(14%); }
+  40% { transform: translateX(60%); }
+  50% { transform: translateX(95%); }
+  60% { transform: translateX(105%); }
+  70% { transform: translateX(105%); }
+  80% { transform: translateX(70%); }
+  90% { transform: translateX(50%); }
+  100% { transform: translateX(-3%); }
+}
+
+/* Moving Claw to location on the shelf. */
+@keyframes clawToCoke {
+  0% { transform: translateY(10%); }
+  10% { transform: translateY(10%); }
+  20% { transform: translateY(10%); }
+  30% { transform: translateY(10%); }
+  40% { transform: translateY(20%); }
+  50% { transform: translateY(30%); }
+  60% { transform: translateY(40%); }
+  70% { transform: translateY(40%); }
+  80% { transform: translateY(20%); }
+  90% { transform: translateY(10%); }
+  100% { transform: translateY(10%); }
+}
+</pre>
+					</code>
+				</div>
+			</div><!-- End Code Container -->
+		</div>
+
+		<div class="tab tab-stylus">
+			<div class="code-container">
+				<div class="code">
+					<code>
+<pre>// Moving Pole to location on the shelf.
+@keyframes poleToCoke
+  0%
+    transform translateX(-3%)
+  10%
+    transform translateX(10%)
+  20%
+    transform translateX(14%)
+  30%
+    transform translateX(14%)
+  40%
+    transform translateX(60%)
+  50%
+    transform translateX(95%)
+  60%
+    transform translateX(105%)
+  70%
+    transform translateX(105%)
+  80%
+    transform translateX(70%)
+  90%
+    transform translateX(50%)
+  100%
+    transform translateX(-3%)
+
+// Moving Claw to location on the shelf.
+@keyframes clawToCoke
+  0%
+    transform translateY(10%)
+  10%
+    transform translateY(10%)
+  20%
+    transform translateY(10%)
+  30%
+    transform translateY(10%)
+  40%
+    transform translateY(20%)
+  50%
+    transform translateY(30%)
+  60%
+    transform translateY(40%)
+  70%
+    transform translateY(40%)
+  80%
+    transform translateY(20%)
+  90%
+    transform translateY(10%)
+  100%
+    transform translateY(10%)
+</pre>
+					</code>
+				</div>
+			</div><!-- End Code Container -->
+		</div>
+	</div>
+
+	<p>As you can see in our previous example, both animations values(Locations) change at the same keyframe step (<span class="code-snippet">40% step</span>). At the end of the animation, they go back to their original location.</p>
+
+	<p>To achieve the mechanics of the machine pole/claw, we use <span class="code-snippet">clawToCoke keyframes</span> which makes all the other keyframes related to moving our bottles start and end at the same location.</p>
+
+<hr>
+
+
+	<h2><a href="#javascript" id="javascript" class="main-anchor">Javascript:</a></h2>
+
+	<h4>Activating Classes:</h4>
+
+                    <p>Now that we're done creating all the animation keyframes, we'll use Javascript to animate our keyframes, start them at the same time, and activate them with the buttons we made in the <span class="code-snippet">.machine-controls</span>. Next, we'll build a few classes and trigger them with Javascript. This is the simplest way to activate all of our animations at once and end them in unison. JS also allows each button to restart the same animations loop for each bottle type without causing bugs.</p>
+        
+	<p>Next we'll begin by activating classes, using the Coca-Cola bottle as an example (for the rest of the classes see the <a href="http://campusbubble.com/coke/projects/css-tutorial-files.zip" target="_blank">project files</a>):</p>
+
+	<h6>How it works:</h6>
+
+	<div class="code-view">
+		<ul class="code-tabs">
+			<li><a href="#" class="active" data-tab="css">CSS</a></li>
+			<li><a href="#" data-tab="stylus">STYL</a></li>
+		</ul>
+
+
+		<div class="tab tab-css tab-active">
+			<div class="code-container">
+				<div class="code">
+					<code>
+<pre>.grab-bottle-coke .switching-coke {
+  animation: 5s cokeToGlass linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.grab-bottle-coke .machine-claw-container {
+  animation: 5s clawToCoke linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.grab-bottle-coke .machine-pole {
+  animation: 5s poleToCoke linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.grab-bottle-coke .claw-coke {
+  opacity: 0;
+  animation: 5s clawChangeBottle linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.grab-bottle-coke .bottle-coke {
+  animation: 5s bottleInGlass linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+/* And the same for each bottle type */</pre>
+					</code>
+				</div>
+			</div><!-- End Code Container -->
+		</div>
+
+		<div class="tab tab-stylus">
+			<div class="code-container">
+				<div class="code">
+					<code>
+<pre>// Grabs Coke Bottle, Using coke specific keyframes.
+.grab-bottle-coke
+  // Animation To Coke Bottle
+  // Moves pole and claw to proper positions
+  .switching-coke
+    animation $anim-dur cokeToGlass linear
+    animation-iteration-count 1
+    animation-fill-mode forwards
+  .machine-claw-container
+    animation $anim-dur clawToCoke linear
+    animation-iteration-count 1
+    animation-fill-mode forwards
+  .machine-pole
+    animation $anim-dur poleToCoke linear
+    animation-iteration-count 1
+    animation-fill-mode forwards
+  .claw-coke
+    opacity 0
+    animation $anim-dur clawChangeBottle linear
+    animation-iteration-count 1
+    animation-fill-mode forwards
+  .bottle-coke
+    animation $anim-dur bottleInGlass linear
+    animation-iteration-count 1
+    animation-fill-mode forwards
+// And the same for each bottle type</pre>
+					</code>
+				</div>
+			</div><!-- End Code Container -->
+		</div>
+	</div>
+
+	<p>As you can see we are combining all the classes related to the Coca-Cola bottle into one class to be used by our JS. Let's apply our animations directory to that class so the animations start only when the specific button is clicked.
+	</p>
+
+
+	<p>Next, we'll use the same method create general classes for the bottles replenishing on the shelf and the bottle dropping into the glass view.</p>
+
+	<h6>Example of general classes:</h6>
+
+	<div class="code-view">
+		<ul class="code-tabs">
+			<li><a href="#" class="active" data-tab="css">CSS</a></li>
+			<li><a href="#" data-tab="stylus">STYL</a></li>
+		</ul>
+
+
+		<div class="tab tab-css tab-active">
+			<div class="code-container">
+				<div class="code">
+					<code>
+<pre>.grapping-bottle .glass-cover {
+  animation: 5s openGlass linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.grapping-bottle .hide-bottle {
+  transition: all 0.2s ease;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.grapping-bottle .choose-drink {
+  opacity: 0;
+}
+
+.grapping-bottle .drink-me {
+  opacity: 1;
+  transition-delay: 5s;
+}
+
+.moving-bottles .bottle-back {
+  opacity: 0;
+  animation: 5s bottleBack linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.moving-bottles .bottle-moving {
+  margin-top: -0.35em;
+  margin-left: -0.35em !important;
+  animation: 5s bottleMoving linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.moving-bottles .bottle-front {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  animation: 5s bottleFront linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+</pre>
+					</code>
+				</div>
+			</div><!-- End Code Container -->
+		</div>
+
+		<div class="tab tab-stylus">
+			<div class="code-container">
+				<div class="code">
+					<code>
+<pre>.grapping-bottle
+  .glass-cover
+    animation $anim-dur openGlass linear
+    animation-iteration-count 1
+    animation-fill-mode forwards
+
+  .hide-bottle
+    transition all .2s ease
+    opacity 0
+
+  .choose-drink
+    opacity 0
+
+  .drink-me
+    opacity 1
+    transition-delay $anim-dur
+
+// This class activates the bottle stacking illusion.
+.moving-bottles
+  .bottle-back
+    opacity 0
+    animation $anim-dur bottleBack linear
+    animation-iteration-count 1
+    animation-fill-mode forwards
+  .bottle-moving
+    margin-top -.35em
+    margin-left -.35em!important
+    animation $anim-dur bottleMoving linear
+    animation-iteration-count 1
+    animation-fill-mode forwards
+  .bottle-front
+    opacity 1
+    animation $anim-dur bottleFront linear
+    animation-iteration-count 1
+    animation-fill-mode forwards</pre>
+					</code>
+				</div>
+			</div><!-- End Code Container -->
+		</div>
+	</div>
+
+
+
+<h2><a href="#conclusion" id="conclusion" class="main-anchor">Conclusion:</a></h2>
+                    
+                    <p>You made it! With CSS3, even the most complex animations are possible.</p> Go forth and use your newfound skills!
+        
+                    <p>In the <a href="/css/">demo</a>, you can see that when a bottle is dispensed and clicked on, a popup appears emptying the bottle and showing the drink's motto. This is achieved with SVG techniques covered in the <a href="/svg/svg-final.html" >Final Project SVG tutorial</a>. The code for that element is also included in the <a href="http://campusbubble.com/coke/projects/css-tutorial-files.zip" target="_blank">project files</a> for this tutorial.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/highlight.pack.js"></script>
+	<script src="js/tutorial.js"></script>
+</body>
+</html>

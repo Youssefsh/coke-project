@@ -1,0 +1,354 @@
+@import 'nib'
+
+// Variables :
+//============
+
+// Colors
+$bg-main = #CA3942
+$bg-light = rgba(255,255,255, .15)
+$bg-fill = #752024
+$bg-logo = $bg-main // #CA3942
+
+// Animation Steps
+
+$step-one = 3s
+
+// If we want to start something after $step-two it needs to take the duration of $step-1 and $step-2 with a .1s extra delay
+// Basically the loader + the bottle filling takes a total of 7s and when they are combined that's the delay we need for our bottle cap to pop out of the bottle
+$step-two = 4s
+$step-two-delay = $step-one + $step-two + .1s
+
+$step-three = 3s
+
+$anim-duration = $step-two-delay - .5s
+
+$machine-spacer = 1em
+
+$machine-lc = #EEEEEE
+
+
+/* Connecting Fonts      :-
+--------------------------- */
+@font-face
+    font-family 'Gotham'
+    src: url('../../../common/fonts/Gotham-Book_gdi.eot')
+    src: url('../../../common/fonts/Gotham-Book_gdi.eot?#iefix') format('embedded-opentype'),
+         url('../../../common/fonts/Gotham-Book_gdi.woff') format('woff'),
+         url('../../../common/fonts/Gotham-Book_gdi.ttf') format('truetype'),
+         url('../../../common/fonts/Gotham-Book_gdi.svg#Gotham-Book') format('svg')
+    font-weight 325
+    font-style normal
+    font-stretch normal
+
+$main-font = 'Gotham', Arial, sans-serif
+
+// General Styles :-
+// -----------------
+
+
+.bottle-container
+    position relative
+    background-color $bg-main
+    width 600px
+    height 700px
+    margin 0 auto
+    text-align center
+    border-radius .5em
+    overflow visible!important
+    svg
+        margin-top 2em
+        overflow visible!important
+        display inline-block
+        @media (max-width: 700px)
+            width 60%
+            height 60%
+        @media (max-width: 500px)
+            width 40%
+            height 40%
+    @media (max-width: 700px)
+        width 100%
+
+
+// Bottle Componenets :-
+// ---------------------
+
+// Bottle Cap
+.bottle_cap
+    opacity 0
+    transform-origin 50% 50%
+    animation bottle-cap .8s linear
+    animation-delay $step-two-delay
+    animation-iteration-count 1
+    animation-fill-mode forwards
+
+@keyframes bottle-cap
+    0%
+        opacity 1
+        transform rotate(0) translateY(0)
+    15%
+        transform translateX(40px) translateY(-40px) rotate(60deg)
+    45%
+        transform translateX(140px) translateY(-70px) rotate(120deg)
+    65%
+        transform translateX(160px) translateY(-50px) rotate(135deg)
+    75%
+        transform translateX(175px) translateY(330px) rotate(180deg)
+    90%
+        transform translateX(170px) translateY(335px) rotate(135deg)
+    100%
+        opacity 1
+        transform translateX(175px) translateY(360px) rotate(180deg)
+
+// Bottle Logo
+.bottle_logo
+    fill $bg-logo
+
+// Bottle Loader
+.bottle_loader
+    stroke-dasharray 1000
+    stroke-dashoffset 1000
+    animation bottle-loader $step-two-delay linear
+    animation-iteration-count 1
+    animation-fill-mode forwards
+
+// Bottle Open
+.bottle_open
+    opacity 0
+    animation fade-in .1s linear
+    animation-delay $step-two-delay - .2s
+    animation-iteration-count 1
+    animation-fill-mode forwards
+
+// Bottle Outline
+.bottle_outline
+    stroke $bg-light
+    animation switch-outline .1s linear
+    animation-delay $step-two-delay
+    animation-iteration-count 1
+    animation-fill-mode forwards
+
+// the -.3s in the animation-delay property is the duration the animation takes to reach it's end, Which is the animation duration time.
+.fill_waves
+    fill $bg-fill
+    animation bottle-waves .3s linear infinite
+    animation-delay $step-two-delay - .3s
+    animation-iteration-count 1
+    animation-fill-mode forwards
+    opacity 0
+
+// Wavey Effect
+@keyframes bottle-waves
+    0%, 75%
+        opacity 0
+    100%
+        opacity 1
+
+// Line Animation
+@keyframes bottle-loader
+    0%
+        stroke-dashoffset 1000
+    52%, 99.5%
+        stroke-dashoffset 0
+        opacity 1
+    100%
+        opacity 0
+
+// Switch Outline
+@keyframes switch-outline
+    0%
+        opacity 1
+    100%
+        opacity 0
+
+// Fade In Animation
+@keyframes fade-in
+    0%
+        opacity 0
+    100%
+        opacity 1
+
+// Circle Group
+.circle-1, .circle-2, .circle-3, .circle-4, .circle-5, .circle-6, .circle-7, .circle-8, .circle-9
+    animation bubbles 1.5s linear infinite
+    transform-origin 50% 50%
+
+.circle-1
+    animation-delay .2s
+.circle-2
+    animation-delay .4s
+.circle-3
+    animation-delay .6s
+.circle-4
+    animation-delay .8s
+.circle-5
+    animation-delay 1s
+.circle-6
+    animation-delay 1.2s
+.circle-7
+    animation-delay 1.4s
+.circle-8
+    animation-delay 1.6s
+.circle-9
+    animation-delay 1.8s
+
+// Delaying Circles
+@keyframes bubbles
+    0%
+        opacity 0
+        transform translateY(-2px) scale(.8)
+    100%
+        opacity 1
+        transform translateY(-12px) scale(1)
+
+.bubbles_group
+    opacity 0
+    animation fade-in .1s linear
+    animation-delay $step-two-delay + .5s
+    animation-iteration-count 1
+    animation-fill-mode forwards
+
+.loading-done
+    opacity 0
+    display inline-block
+    width 100%
+    animation fade-up-stay .3s linear
+    animation-delay $anim-duration + .3s
+    animation-iteration-count 1
+    animation-fill-mode forwards
+
+// Adds a % sign using CSS after puesdo element.
+.counter
+    &:after
+        content '%'
+    opacity 0
+    &.active
+        opacity 1
+
+.loading-counter
+    position relative
+    display inline-block
+    height 12px
+    width 100%
+    animation fade-up .3s linear
+    animation-delay $anim-duration
+    animation-iteration-count 1
+    animation-fill-mode forwards
+    span
+        position absolute
+        left 0
+        right 0
+        bottom 0
+        top 0
+
+.loading-container
+    display inline-block
+    width 100%
+    margin-top 2em
+    font-size 13px
+    font-weight 600
+    letter-spacing .15em
+    font-family $main-font
+    text-transform uppercase
+    color white
+    &.active
+        opacity 1
+
+ @keyframes fade-up
+    0%
+        opacity 1
+    100%
+        opacity 0
+        transform translateY(-15px)
+
+ @keyframes fade-up-stay
+    0%
+        opacity 0
+    100%
+        opacity 1
+        transform translateY(-15px)
+
+
+.reload-demo
+    border .2em solid white
+    color white
+    text-transform uppercase
+    font-size 12px
+    text-decoration none
+    font-family $main-font
+    letter-spacing .15em
+    font-weight 500
+    padding .4em 1em
+    border-radius 1.5em
+    position absolute
+    bottom 2em
+    right 2em
+
+    // Animation to show the button after the whole bottle animation is done.
+    opacity 0
+    animation fade-in .1s linear
+    animation-delay $anim-duration
+    animation-iteration-count 1
+    animation-fill-mode forwards
+    &:hover
+        background-color white
+        color $bg-main
+
+
+/* Browser Fallbacks     :-
+--------------------------- */
+.browser-support
+    display none
+    width 100%
+    text-align center
+    font-family $main-font
+    img
+        display block
+        margin 4em auto
+    p
+        margin-bottom $machine-spacer
+        color darken($machine-lc, 50%)
+.browser-ie
+    .bottle-container
+        display none
+    .browser-support
+        display block
+
+
+
+.browser-logos
+    margin-top $machine-spacer * 2
+    margin-bottom $machine-spacer * 2
+    a
+        display inline-block
+        width ($machine-spacer * 4)
+        margin 0 ($machine-spacer * .75)
+        text-decoration none
+        color darken($machine-lc, 50%)
+        &:hover
+            opacity .8
+    img
+        display inline-block
+        width 100%
+        height auto
+        margin 0
+
+    .text
+        display inline-block
+        margin-top ($machine-spacer * .5)
+
+
+// Loading message
+.loading-message
+    opacity 1
+    display inline-block
+    animation hide-loading-message .3s linear
+    animation-delay $step-one
+    animation-iteration-count 1
+    animation-fill-mode forwards
+
+ @keyframes hide-loading-message
+    0%
+        opacity 1
+    100%
+        opacity 0
+        transform translateY(-15%)

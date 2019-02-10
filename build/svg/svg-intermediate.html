@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]> <html dir="ltr" lang="en-US"class="browser-ie"> <![endif]-->
+<!--[if lt IE 7 ]> <html dir="ltr" lang="en-US" class="browser-ie"> <![endif]-->
+<!--[if IE 7 ]>    <html dir="ltr" lang="en-US" class="browser-ie"> <![endif]-->
+<!--[if IE 8 ]>    <html dir="ltr" lang="en-US" class="browser-ie"> <![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SVG Intermediate</title>
+  <link rel="stylesheet" href="../common/styles/highlight/androidstudio.css">
+  <!-- <link rel="stylesheet" href="../common/styles//bootstrap/bootstrap.css"> -->
+  <!-- <link rel="stylesheet" href="../common/styles//bootstrap/bootstrap-theme.css"> -->
+  <link rel="stylesheet" href="../common/styles/tutorial.css">
+
+	<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+	
+</head>
+<body>
+	
+	<div class="container">
+		
+		<h1>Intermediate SVG</h1>
+        
+        <hr>
+        
+        <p>Now that you have grasp of the SVG <a href="/svg/svg-beginner.html">basics</a>, it's time to move on to the fun part: animation. Because SVG is resolution independent, using SVG is a performant, cross-platform method to animate on the web. There are three different ways to animate SVG - each with its own advantages and disadvantages. Once you feel comfortable with animation, we'll move on to the <a href="/svg/svg-final.html">Final Project</a> where we'll learn how to build an animated <a href="/svg/">Coke contour bottle loader</a>.</p>
+        
+        <p>In this tutorial, we'll learn about animating with CSS3, Javascript, and SMIL. In the mini tutorial, we'll dive in and create some simple animations. Let's start!</p>
+        
+            
+               <strong>Table of Contents:</strong>
+                <ul>
+                    <li><a href="#css3">CSS3 Animation</a></li>
+                    <li><a href="#js">Javascript Animation</a></li>
+                    <li><a href="#smil">SMIL Animation</a></li>
+                    <li><a href="#tutorial">Mini Tutorial</a></li>
+                </ul>
+                
+				<hr>
+        <h2><a href="#css3" id="css3" class="main-anchor">CSS3 Animation:</a></h2>
+
+        <p>If you're using inline SVG, you can target the SVG (or shapes within) with CSS and animate using CSS animations. This method of animating SVG is the simplest and most approachable. Animating SVG with CSS is like animating any other element with CSS—it can be done with transitions, transforms, and keyframe animations. Once you’re familiar with the markup of an SVG, the rest is fairly straight forward. </p>
+        
+        <p>For a quick overview on CSS animation, take a look the <a href="/css/css-advanced.html">Advanced CSS</a> tutorial. Using the <span class="code-snippet">@keyframes</span> rule and the CSS <span class="code-snippet">transform</span> property, you can animate SVG easily. Below is a simple example of CSS animation of SVG.</p>
+        
+        <hr>
+        <h6>Simple CSS transform animations on a SVG rect:</h6>
+        <p data-height="295" data-theme-id="0" data-slug-hash="EjXoXL" data-default-tab="result" data-user="Youssefsh" class='codepen'>See the Pen <a href='http://codepen.io/Youssefsh/pen/EjXoXL/'>EjXoXL</a> by Youssef (<a href='http://codepen.io/Youssefsh'>@Youssefsh</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+         
+        <hr>
+        <p>However, the caveat with CSS transforms is cross-browser compatibility. Below is a list of discrepancies between browsers for CSS transform:</p>
+        
+        <ul>
+            <li>IE and Opera don't honor CSS transforms at all on SVG elements. Instead, you must assign the value to the <span class="code-snippet">transform</span> attribute.</li>
+            <li>Firefox doesn't honor %-based origins.</li>
+            <li>Zooming in Safari breaks the sync between %-based and px-based origins.</li>
+            <li>In all browsers, px-based origins are measured differently for SVG elements than other DOM elements.</li>
+        </ul>
+
+        <p><span class="link-snippet">Link:</span> Read <a href="https://css-tricks.com/svg-animation-on-css-transforms/" target="_blank">more</a> about SVG and CSS transform cross-browser compatibility</p>
+        
+		<hr>
+        
+        <h2><a href="#js" id="js" class="main-anchor">JS Animation:</a></h2>
+
+		<p>Using Javascript and Javascript animation libraries can make SVG animation more cross-browser friendly and remain performant. Libraries such as <a href="http://greensock.com/gsap" target="_blank">GSAP</a> and <a href="http://julian.com/research/velocity/" target="_blank">Velocity JS</a> have become popular of late. Below is an example of Javascript SVG animation.</p>
+        
+        <hr>
+        <h6>Simple JS animations on a SVG path:</h6>
+         <p data-height="268" data-theme-id="0" data-slug-hash="xGrpNM" data-default-tab="result" data-user="Youssefsh" class='codepen'>See the Pen <a href='http://codepen.io/Youssefsh/pen/xGrpNM/'>xGrpNM</a> by Youssef (<a href='http://codepen.io/Youssefsh'>@Youssefsh</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+
+
+		<p><a href="http://greensock.com/gsap" target="_blank">GSAP</a> by GreenSock. Although every major browser offers excellent support for displaying SVG graphics, animating them is not always easy or consistent. Each browser has its own quirks and implementations of the SVG spec, causing quite a few challenges for animators. GSAP smooths out the rough spots and harmonizes behavior across browsers for you.</p>
+        
+                <p><span class="link-snippet">Link:</span> Check out an <a href="http://greensock.com/svg-tips" target="_blank">introduction</a> to animating SVG with GSAP.</p>
+
+        <p><a href="http://velocityjs.org/">Velocity.js</a> has gained popularity for extensive cross-browser SVG support and being lightweight. Velocity.js automatically detects when it's being used to animate an SVG element and seamlessly applies SVG-specific properties without you having to modify your code in any way.</p>
+
+                <p><span class="link-snippet">Link:</span> Get a <a href="        
+        http://davidwalsh.name/svg-animation" target="_blank">crash course</a> on using Velocity.js with SVG.</p>
+
+        <p>The most popular SVG Javascript animation library is <a href="http://snapsvg.io/">Snap.svg</a>. Snap is the successor to Dmitry Baranovskiy's <a href="http://raphaeljs.com/">Raphaël</a> and gets credit for support the most amount of animation capabilities. Snap was built to more easily use the latest that SVG can offer; features like masking, patterns, gradients, groups, animations and more.</p>
+        
+        <p><span class="link-snippet">Link:</span> Learn how to use Snap.js to make <a href="http://tympanus.net/codrops/2013/11/05/animated-svg-icons-with-snap-svg/" target="_blank">animated SVG icons</a>.</p>
+		
+        
+        <hr>
+        
+        <h2><a href="#smil" id="smil" class="main-anchor">SMIL Animation:</a></h2>
+
+        <p><strong>SMIL</strong>, short for Synchronized Multimedia Integration Language, allows you to animate SVG elements using <a href="http://www.w3.org/TR/2001/REC-smil-animation-20010904/">SMIL specifications</a>. The specifications resemble CSS transform but are supported by far more browsers. However, SMIL animations are not supported by Internet Explorer</p>
+        
+        		<div class="notes-container">
+			<p><span class="note-snippet">Note:</span> By using a SMIL polyfill we can add a fallback for Internet Explorer, example: <a href="https://leunen.me/fakesmile/" target="_blank">Fakesmile</a>.</p>
+		</div>
+		
+		<h5>SMIL Animation Elements:</h5>
+		<ul>
+			<li><span class="code-snippet">&#60;animate&#62;</span>, allows you to animate specific attributes and properties.</li>
+			<li><span class="code-snippet">&#60;set&#62;</span>, Short hand for <span class="code-snippet">&#60;animate&#62;</span>.</li>
+			<li><span class="code-snippet">&#60;animateMotion&#62;</span>, Moves element along motion path.</li>
+			<li><span class="code-snippet">&#60;animateColor&#62;</span>, Modifies color values, - <strong>Deprecated</strong>.</li>
+			<li><span class="code-snippet">&#60;animateTransform&#62;</span>, Allows you to animate SVG <span class="code-snippet">transform</span> attribute.</li>
+			<li><span class="code-snippet">&#60;mpath&#62;</span>, used in conjunction with the <span class="code-snippet">&#60;animateMotion&#62;</span> element to reference a motion path that is to be used as a path for the motion.</li>
+			<li><span class="code-snippet">keypoints, rotate ( attributes )</span>, used as an attribute for <span class="code-snippet">&#60;animateMotion&#62;</span>.</li>
+		</ul>
+
+		<hr>
+
+		<p>Here is a simple animation example where we'll use the <span class="code-snippet">&#60;animateTransform&#62;</span> element and apply <span class="code-snippet">type="rotate"</span> to give rotate a square.</p>
+
+		<p data-height="268" data-theme-id="0" data-slug-hash="zGzBMz" data-default-tab="result" data-user="Youssefsh" class='codepen'>See the Pen <a href='http://codepen.io/Youssefsh/pen/zGzBMz/'>zGzBMz</a> by Youssef (<a href='http://codepen.io/Youssefsh'>@Youssefsh</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+
+		<p>By using <span class="code-snippet">repeatCount="indefinite"</span>, the square will rotate infinitely.</p>
+
+
+		<hr>
+        
+        <h2><a href="#tutorial" id="tutorial" class="main-anchor">Mini Tutorial:</a></h2>
+
+		<p>In this mini tutorial, we'll learn how to create some simple line and shape SVG animations. First we'll create the animations using CSS3 and the replicate them in SMIL. In doing so, you'll notice how each method is able to manipulate SVG shapes.</p>
+
+
+		<h5>CSS animation of SVG:</h5>
+
+		<p>Let's animate an SVG circle, square, and a line.</p>
+
+		<p>Let's start by creating keyframes animations for each one. We'll want to make all of our simple animations continuous. To achieve this, all we need to do is to add the same animation at the starting point of the keyframes <span class="code-snippet">0%</span> and the ending point of our keyframes <span class="code-snippet">100%</span>. If our animation ends and starts at the same transform, we'll have created a looped animation.</p>
+
+		<div class="notes-container">
+			<p><span class="note-snippet">Note:</span> by using the <span class="code-snippet">transform-origin</span> property and setting it to <span class="code-snippet">50% 50%</span>, we are telling our element animate on its center axis rather than the default location in the upper left.</p>
+		</div>
+
+		<h6>Circle:</h6>
+
+		<p>Let's animate a circle by using <span class="code-snippet">transform: scale(value) translateY(value);</span>. The scale() property simply scales our element based on its current size. By increasing and reducing our scale we are creating an a pulsating effect.</p>
+
+		<h6>Square:</h6>
+
+		<p>For our square, we'll rotate it using <span class="code-snippet">transform: rotate(45deg);</span></p>
+
+		<h6>Line:</h6>
+
+		<p>Tp animate the line, we'll use a couple different SVG properties in CSS, <span class="code-snippet">stroke-dasharray: value;</span> and <span class="code-snippet">stroke-dashoffset: value;</span>. Let's take a closer look:</p>
+
+
+		<p>1 - <span class="code-snippet">stroke-dasharray</span> :</p>
+
+		<p>The idea here is to make the element's <span class="code-snippet">stroke-dasharray</span> bigger than the element's length. By increasing the size of the dashes to be longer than our element's length, we are in effect hiding the line.</p>
+
+		<p>2 - <span class="code-snippet">stroke-dashoffset</span> :</p>
+		
+		<p>After applying our <span class="code-snippet">stroke-dasharray</span> to be more than the line's length, let's use the <span class="code-snippet">stroke-dashoffset</span> to offset our stroke. Let's also make it fill and unfill the line by adding <span class="code-snippet">stroke-dashoffset</span> to some animation keyframes. The end result is a line drawing effect.</p>		
+
+		<h6>Demo:</h6>
+
+		<p data-height="360" data-theme-id="0" data-slug-hash="rVwLgm" data-default-tab="result" data-user="Youssefsh" class='codepen'>See the Pen <a href='http://codepen.io/Youssefsh/pen/rVwLgm/'>rVwLgm</a> by Youssef (<a href='http://codepen.io/Youssefsh'>@Youssefsh</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+
+		
+		<hr>
+
+
+		<h5>SMIL animation of SVG:</h5>
+
+		<p>Next, let's create the same animations using SMIL. We'll mainly use the <span class="code-snippet">&lt;animateTransform&gt;</span> element. With the <span class="code-snippet">&lt;animateTransform&gt;</span> element, we can use different types of animation just like CSS (rotate, scale, translate, etc..).</p>
+	
+        <h6>Circle:</h6>
+		<p>Creating our circle scaling effect using <span class="code-snippet">&lt;animateTransform&gt;</span> and changing our scale from 1 to 2, which is double the size of our original circle.</p>		
+
+		<p data-height="225" data-theme-id="0" data-slug-hash="GJEjxg" data-default-tab="result" data-user="Youssefsh" class='codepen'>See the Pen <a href='http://codepen.io/Youssefsh/pen/GJEjxg/'>GJEjxg</a> by Youssef (<a href='http://codepen.io/Youssefsh'>@Youssefsh</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+
+		<br>
+        
+        
+		<h6>Square:</h6>
+		<p>To recreate the square animation using SMIL we'll use <span class="code-snippet">&lt;animateTransform&gt;</span> and apply a rotation from <span class="code-snippet">0deg</span> to <span class="code-snippet">360deg</span>.</p>
+
+		<p data-height="271" data-theme-id="0" data-slug-hash="zGzBMz" data-default-tab="result" data-user="Youssefsh" class='codepen'>See the Pen <a href='http://codepen.io/Youssefsh/pen/zGzBMz/'>zGzBMz</a> by Youssef (<a href='http://codepen.io/Youssefsh'>@Youssefsh</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+		
+		<br>
+
+
+		<h6>Line:</h6>
+		<p>We'll use the same properties we used for the CSS version of animating the line with <span class="code-snippet">stroke-dasharray</span> and <span class="code-snippet">stroke-dashoffset</span>. Let's use the <span class="code-snippet">&lt;animate&gt;</span> element to select the attribute for the <span class="code-snippet">stroke-dashoffset</span>.</p>
+
+		<p data-height="268" data-theme-id="0" data-slug-hash="QbgKZg" data-default-tab="result" data-user="Youssefsh" class='codepen'>See the Pen <a href='http://codepen.io/Youssefsh/pen/QbgKZg/'>QbgKZg</a> by Youssef (<a href='http://codepen.io/Youssefsh'>@Youssefsh</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+	</div>
+	
+<hr>
+
+	<br><br><br>
+
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/highlight.pack.js"></script>
+	<script src="js/tutorial.js"></script>
+
+</body>
+</html>

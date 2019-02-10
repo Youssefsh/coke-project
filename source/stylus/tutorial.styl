@@ -1,0 +1,254 @@
+
+/* Importing Files/Plugins :-
+----------------------------- */
+
+@import 'nib'
+$main-font = arial, helvetica, sans-serif
+$code-font = monospace
+$code-bg = #282b2e
+html
+  box-sizing border-box
+*,
+*:before,
+*:after 
+  box-sizing inherit
+body
+	background-color #FFFFFF
+	font-size 16px
+	font-family $main-font
+	color #555
+
+.code
+	padding 20px
+	border-radius 4px
+	font-size 15px
+	
+.code-container
+	position relative
+	margin-bottom 30px
+	
+.code-type
+	display inline-block
+	margin-bottom 1.5em
+	font-size 12px
+	text-transform uppercase
+	font-weight 700
+	letter-spacing .1em
+	color lighten($code-bg, 25%)
+	padding-left 10px
+	width 100%
+pre
+	margin 0
+	font-family $code-font
+
+/* Layout       :-
+--------------------------- */
+
+.code-snippet,
+.link-snippet,
+.note-snippet
+	font-family $code-font
+	color white
+	display inline-block
+	font-size 14px
+	line-height 1em
+	border-radius 4px
+	vertical-align middle
+	padding 2px 4px
+
+.code-snippet
+	border 1px solid lighten($code-bg, 55%)
+	background-color lighten($code-bg, 60%)
+
+.link-snippet
+	background-color lighten(green, 10%)
+	border 1px solid darken(green, 5%)
+.note-snippet
+	background-color darken(yellow, 2%)
+	border 1px solid darken(yellow, 15%)
+	color #666
+.container
+	max-width 900px
+	margin 0 auto
+	clearfix()
+	@media (max-width: 900px)
+		width 100%
+		padding-left 2em
+		padding-right 2em
+
+hr
+	border 0
+	border-bottom 1px solid #ddd
+	margin-top 60px
+	margin-bottom 60px
+/* Typography            :-
+--------------------------- */
+.small
+	font-size .75em
+	line-height 1.6em
+	display inline-block
+	vertical-align top
+
+.notes-container
+	margin-bottom 30px
+	margin-left -30px
+	@media (max-width: 900px)
+		margin-left 0px
+	p
+		margin-bottom 0
+.question
+	margin-bottom 0
+	color darken(#555, 15%)
+	font-weight 700
+	&:before
+		content '* '
+p
+	font-size 18px
+	margin-bottom 2em
+	line-height 1.5em
+
+h1
+	font-size 32px
+	line-height 1em
+	margin-bottom 1.5em
+h2
+	font-size 24px
+	line-height 1em
+	margin-left -30px
+	margin-bottom 1.5em
+	@media (max-width: 900px)
+		margin-left 0
+h3
+	font-size 20px
+	line-height 1em
+	font-weight 700
+	margin-bottom 1.5em
+	
+h4
+	font-size 18px
+	line-height 1em
+	font-weight 700
+	margin-bottom 1.5em
+	
+h5
+	font-size 16px
+	line-height 1em
+	font-weight 700
+	font-weight 700
+	margin-bottom 1.5em
+	margin-bottom 1.5em
+	
+h6
+	font-size 15px
+	line-height 1em
+	margin 0
+	margin-bottom 1.5em
+a
+	color #555
+	&:hover
+		opacity .8
+		text-decoration underline
+		text-decoration-style dotted
+
+ul, ol
+	padding-left 50px
+	margin-bottom 30px
+	li
+		margin 15px 0
+		&:last-child
+			margin-bottom 0
+	ul, ol
+		margin-bottom 0
+
+.main-anchor
+	text-decoration none
+	position relative
+	&:before
+		content '#'
+		line-height 100%
+		font-size .8em
+		line-height 1.5em
+		vertical-align top
+		position absolute
+		left -20px
+
+/* Code Tabs             :-
+--------------------------- */
+
+.code-tabs
+	margin 0
+	padding 0
+	display block
+	clearfix()
+	width 100%
+	li
+		display inline-block
+		margin 0
+		float left
+	a
+		display inline-block
+		float left
+		text-decoration none
+		font-size 12px
+		letter-spacing .1em
+		font-weight 700
+		padding 8px 10px (8px + 10px) 10px
+		position relative
+		z-index 10
+		opacity .8
+		&:hover
+			opacity 1
+		&.active
+			opacity 1
+			&:before
+				content ''
+				width 0
+				height 0
+				border-style solid
+				border-width 0 10px 7px 10px
+				border-color transparent transparent $code-bg transparent
+				position absolute
+				left 50%
+				margin-left -10px
+				bottom 0
+
+
+.tab
+	display none
+	
+	&.tab-active
+		display block
+
+.preview-image
+	display inline-block
+	width 100%
+	text-align center
+	img
+		display inline-block
+
+/* Grid System           :-
+--------------------------- */
+
+
+.grid-container
+	clearfix()
+	>div
+		float left
+		@media (max-width: 900px)
+			width 100%!important
+	@media (max-width: 900px)
+		img
+			margin-left 0!important	
+.grid-40
+	width 40%
+
+.grid-30
+	width 30%
+
+.grid-70
+	width 70%
+.grid-60
+	width 60%
+	
+.grid-50
+	width 50%
